@@ -20,6 +20,15 @@
 
     ########### Everything else ###########
 
+    # Bleeding edge kernel
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs = {
+        home-manager.follows = "";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    
     # A 'nix' fork, decently faster
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";

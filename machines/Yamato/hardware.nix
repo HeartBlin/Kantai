@@ -1,4 +1,4 @@
-{ lib, modulesPath, system, ... }:
+{ lib, modulesPath, pkgs, system, ... }:
 
 let
   inherit (lib) mkForce;
@@ -9,6 +9,7 @@ in {
     initrd.kernelModules = [ ];
     initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/06279896-5da7-4bd9-90b8-d74f33014996";
     kernelModules = [ "kvm-amd" ];
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
     extraModulePackages = [ ];
   };
 

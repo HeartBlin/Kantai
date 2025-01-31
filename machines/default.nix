@@ -13,6 +13,7 @@ let
     
       modules = [
         # Modules from inputs
+        inputs.chaotic.nixosModules.default
         inputs.lix.nixosModules.default
 
         # Paths

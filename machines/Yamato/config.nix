@@ -5,7 +5,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    warn-dirty = false;
+  };
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.

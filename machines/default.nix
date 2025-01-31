@@ -1,6 +1,7 @@
 { inputs, self, withSystem, ... }:
 
 let
+  # Create systems
   mkSystem = {
     hostname, role,
     username, prettyUsername ? username,
@@ -26,7 +27,7 @@ let
   );
 in {
   flake.nixosConfigurations = {
-    Yamato = mkSystem {
+    "Yamato" = mkSystem {
       hostname = "Yamato";
       role = "laptop";
       username = "heartblin";

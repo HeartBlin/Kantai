@@ -4,12 +4,14 @@ let
   inherit (builtins) concatStringsSep elem;
   allowedRoles = [ "desktop" "laptop" "server" ];
 
+  # Import only the role definition of the correct role
   roleImport = 
     if role == "desktop" then [ ./roles/desktop ]
     else if role == "laptop" then [ ./roles/laptop ]
     else if role == "server" then [ ./roles/server ]
     else [ ];
 
+  # Every system gets these
   coreImports = [
     ./security
   ];
@@ -25,5 +27,6 @@ in {
     }
   ];
 
+  # Core modules import
   imports = coreImports ++ roleImport;
 }

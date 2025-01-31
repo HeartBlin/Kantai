@@ -12,6 +12,9 @@ let
       specialArgs = args;
     
       modules = [
+        # Modules from inputs
+        inputs.lix.nixosModules.default
+
         # Paths
         "${self}/machines/${hostname}/config.nix"
         "${self}/machines/${hostname}/hardware.nix"

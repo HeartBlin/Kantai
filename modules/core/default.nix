@@ -13,8 +13,9 @@ let
 
   # Every system gets these
   coreImports = [
-    ./security
     ./bootloader
+    ./security
+    ./nix
   ];
 in {
   assertions = [

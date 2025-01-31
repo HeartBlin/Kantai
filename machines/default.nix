@@ -19,6 +19,8 @@ let
         # Paths
         "${self}/machines/${hostname}/config.nix"
         "${self}/machines/${hostname}/hardware.nix"
+        "${self}/modules/option"  # Modules for all roles, enabled through host-specific.nix
+        "${self}/modules/core"      # Role-dependent modules, forced
       ];
     }
   );

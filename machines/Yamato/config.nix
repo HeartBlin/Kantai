@@ -1,8 +1,7 @@
 { config, hostname, lib, pkgs, prettyUsername, username, ... }:
 
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+
 
   nixpkgs.config.allowUnfree = true;
   nix.settings = {

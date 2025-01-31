@@ -1,7 +1,8 @@
-{ config, hostname, lib, pkgs, prettyUsername, username, ... }:
+{ config, hostname, pkgs, prettyUsername, username, ... }:
 
 {
   Kantai = {
+    fish.enable = true;
     vscode.enable = true;
   };
 
@@ -15,13 +16,13 @@
 
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
-  
+
   hardware = {
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.beta;
       open = true;
     };
-  }; 
+  };
 
   programs.steam = {
     enable = true;
@@ -36,7 +37,7 @@
   users.users."${username}"= {
     description = prettyUsername;
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "networkmanager" ]; 
+    extraGroups = [ "wheel" "video" "networkmanager" ];
     homix = true;
     packages = with pkgs; [
       chromium

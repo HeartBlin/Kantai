@@ -50,14 +50,12 @@ let
     "nix.enableLanguageServer" = true;
     "nix.serverPath" = "nixd";
     "nix.hiddenLanguageServerErrors" = [ "textDocument/definition" ];
-    "nix.serverSettings"."nixd" = {
-      "formatting"."command" = [ "nixfmt" ];
-    };
+    "nix.serverSettings"."nixd" = { "formatting"."command" = [ "nixfmt" ]; };
 
     "[nix]" = {
       "editor.defaultFormatter" = "jnoortheen.nix-ide";
-      "editor.formatOnPaste" = true;
-      "editor.formatOnSave" = true;
+      "editor.formatOnPaste" = false;
+      "editor.formatOnSave" = false;
       "editor.formatOnType" = false;
     };
 

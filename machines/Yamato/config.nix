@@ -1,6 +1,10 @@
 { config, hostname, lib, pkgs, prettyUsername, username, ... }:
 
 {
+  Kantai = {
+    vscode.enable = true;
+  };
+
   networking.hostName = hostname;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
@@ -33,9 +37,9 @@
     description = prettyUsername;
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "networkmanager" ]; 
+    homix = true;
     packages = with pkgs; [
       chromium
-      vscode
       neovim
       git
     ];

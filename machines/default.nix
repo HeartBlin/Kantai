@@ -15,7 +15,8 @@ let
       modules = [
         # Modules from inputs
         inputs.chaotic.nixosModules.default
-        inputs.lix.nixosModules.default
+        inputs.homix.nixosModules.default
+	inputs.lix.nixosModules.default
 
         # Paths
         "${self}/machines/${hostname}/config.nix"

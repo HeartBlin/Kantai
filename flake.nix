@@ -28,11 +28,26 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    # Lightweight home management
+    homix = {
+      url = "github:sioodmy/homix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     # A 'nix' fork, decently faster
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Nix language server
+    nixd = {
+      url = "github:/nix-community/nixd";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
   };
 }

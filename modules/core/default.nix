@@ -5,7 +5,7 @@ let
   allowedRoles = [ "desktop" "laptop" "server" ];
 
   # Import only the role definition of the correct role
-  roleImport = 
+  roleImport =
     if role == "desktop" then [ ./roles/desktop ]
     else if role == "laptop" then [ ./roles/laptop ]
     else if role == "server" then [ ./roles/server ]
@@ -13,7 +13,7 @@ let
 
   # Every system gets these
   coreImports = [
-    ./bootloader
+    ./boot
     ./security
     ./nix
   ];

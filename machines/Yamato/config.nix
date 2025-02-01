@@ -4,6 +4,7 @@
   Kantai = {
     fish.enable = true;
     foot.enable = true;
+    lanzaboote.enable = true;
     vscode.enable = true;
   };
 

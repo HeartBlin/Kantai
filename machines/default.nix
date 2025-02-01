@@ -16,6 +16,7 @@ let
         # Modules from inputs
         inputs.chaotic.nixosModules.default
         inputs.homix.nixosModules.default
+        inputs.lanzaboote.nixosModules.lanzaboote
 	      inputs.lix.nixosModules.default
 
         # Paths

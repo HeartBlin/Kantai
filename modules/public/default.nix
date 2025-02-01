@@ -5,6 +5,7 @@ let
   allModules = [
     ./fish
     ./foot
+    ./lanzaboote
     ./vscode
   ];
 in {
@@ -12,6 +13,7 @@ in {
   options.Kantai = {
     fish.enable = mkEnableOption "Enables the fish shell, starship prompt and direnv integration";
     foot.enable = mkEnableOption "Enables the foot terminal emulator";
+    lanzaboote.enable = mkEnableOption "Provides SecureBoot support";
     vscode.enable = mkEnableOption "Enables the VSCode code editor";
   };
 

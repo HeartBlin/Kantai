@@ -35,6 +35,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # SecureBoot support
+    lanzaboote = {
+      url = "github:/nix-community/lanzaboote/v0.4.2";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        pre-commit-hooks-nix.follows = "";
+      };
+    };
+
     # A 'nix' fork, decently faster
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
@@ -45,15 +55,6 @@
     nh = {
       url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Nix language server
-    nixd = {
-      url = "github:/nix-community/nixd";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
     };
   };
 }

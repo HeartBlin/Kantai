@@ -1,4 +1,4 @@
-{ config, hostname, pkgs, prettyUsername, username, ... }:
+{ config, hostName, pkgs, prettyName, userName, ... }:
 
 {
   Kantai = {
@@ -6,7 +6,7 @@
     vscode.enable = true;
   };
 
-  networking.hostName = hostname;
+  networking.hostName = hostName;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   time.timeZone = "Europe/Bucharest";
@@ -34,8 +34,8 @@
     pulse.enable = true;
   };
 
-  users.users."${username}"= {
-    description = prettyUsername;
+  users.users."${userName}"= {
+    description = prettyName;
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "networkmanager" ];
     homix = true;

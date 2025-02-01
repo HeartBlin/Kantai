@@ -3,12 +3,12 @@
 let
   # Create systems
   mkSystem = {
-    hostname, role,
-    username, prettyUsername ? username,
+    hostName, role,
+    userName, prettyName ? userName,
     system ? "x86_64-linux"
   }: withSystem system ( { inputs', self', ... }: let
       inherit (inputs.nixpkgs.lib) nixosSystem;
-      args = { inherit hostname role username prettyUsername system inputs inputs' self self'; };
+      args = { inherit hostName role userName prettyName system inputs inputs' self self'; };
     in nixosSystem {
       specialArgs = args;
 
@@ -19,8 +19,8 @@ let
 	      inputs.lix.nixosModules.default
 
         # Paths
-        "${self}/machines/${hostname}/config.nix"
-        "${self}/machines/${hostname}/hardware.nix"
+        "${self}/machines/${hostName}/config.nix"
+        "${self}/machines/${hostName}/hardware.nix"
         "${self}/modules/public"    # Modules for all roles, enabled through host-specific.nix
         "${self}/modules/core"      # Role-dependent modules, forced
       ];
@@ -29,10 +29,10 @@ let
 in {
   flake.nixosConfigurations = {
     "Yamato" = mkSystem {
-      hostname = "Yamato";
+      hostName = "Yamato";
       role = "laptop";
-      username = "heartblin";
-      prettyUsername = "HeartBlin";
+      userName = "heartblin";
+      prettyName = "HeartBlin";
       system = "x86_64-linux";
     };
   };

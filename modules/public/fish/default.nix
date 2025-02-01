@@ -1,4 +1,4 @@
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, userName, ... }:
 
 let
   inherit (lib) getExe mkIf;
@@ -6,7 +6,7 @@ let
 in {
   config = mkIf cfg.enable {
     # Set the users shell to 'fish'
-    users.users."${username}".shell = pkgs.fish;
+    users.users."${userName}".shell = pkgs.fish;
     programs = {
       fish = {
         enable = true;

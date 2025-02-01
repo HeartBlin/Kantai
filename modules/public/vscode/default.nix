@@ -1,4 +1,4 @@
-{ config, inputs', lib, pkgs, username, ... }:
+{ config, inputs', lib, pkgs, userName, ... }:
 
 let
   inherit (lib) mkIf;
@@ -64,7 +64,7 @@ let
 
     # Terminal
     "terminal.integrated.smoothScrolling" = true;
-    "terminal.integrated.defaultProfile.linux" = "${config.users.users."${username}".shell}";
+    "terminal.integrated.defaultProfile.linux" = "${config.users.users."${userName}".shell}";
 
     # Window
     "window.autoDetectColorScheme" = true;

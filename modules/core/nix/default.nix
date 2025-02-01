@@ -1,4 +1,4 @@
-{ inputs, inputs', system, username, ... }:
+{ inputs, inputs', system, userName, ... }:
 
 {
   # Nice nix cli helper
@@ -10,7 +10,7 @@
   };
 
   # Specify flake location for nh
-  environment.sessionVariables.NH_FLAKE = "/home/${username}/Kantai";
+  environment.sessionVariables.NH_FLAKE = "/home/${userName}/Kantai";
 
   nix = {
     # Optimise store
@@ -46,8 +46,8 @@
       keep-derivations = true;
       keep-outputs = true;
 
-      # Keep it pure
-      pure-eval = true;
+      # Causes problems with nixd
+      pure-eval = false;
 
       # Enable cgroups
       use-cgroups = true;

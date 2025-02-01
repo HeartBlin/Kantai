@@ -1,6 +1,17 @@
-{ flakedir, inputs, self', system, ... }:
+{ inputs, inputs', system, username, ... }:
 
 {
+  # Nice nix cli helper
+  programs.nh = {
+    enable = true;
+    package = inputs'.nh.packages.nh;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+  };
+
+  # Specify flake location for nh
+  environment.sessionVariables.NH_FLAKE = "/home/${username}/Kantai";
+
   nix = {
     # Optimise store
     optimise.automatic = true;

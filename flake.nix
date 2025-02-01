@@ -34,10 +34,16 @@
       url = "github:sioodmy/homix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     # A 'nix' fork, decently faster
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Nix CLI helper
+    nh = {
+      url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

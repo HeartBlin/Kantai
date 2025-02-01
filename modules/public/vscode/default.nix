@@ -1,4 +1,4 @@
-{ config, inputs', lib, pkgs, userName, ... }:
+{ config, hostName, lib, pkgs, userName, ... }:
 
 let
   inherit (lib) mkIf;
@@ -10,9 +10,6 @@ let
     vscodeExtensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
       pkief.material-icon-theme
-      esbenp.prettier-vscode
-      github.vscode-github-actions
-      ritwickdey.liveserver
     ];
   };
 
@@ -49,14 +46,9 @@ let
     # Nix
     "nix.enableLanguageServer" = true;
     "nix.serverPath" = "nixd";
-    "nix.hiddenLanguageServerErrors" = [ "textDocument/definition" ];
-    "nix.serverSettings"."nixd" = { "formatting"."command" = [ "nixfmt" ]; };
-
-    "[nix]" = {
-      "editor.defaultFormatter" = "jnoortheen.nix-ide";
-      "editor.formatOnPaste" = false;
-      "editor.formatOnSave" = false;
-      "editor.formatOnType" = false;
+    "nix.serverSettings"."nixd" = {
+      "formatting"."command" = [ "nixfmt" ];
+      "options"."nixos"."expr" = ''(builtins.getFlake \"/home/${userName}/Kantai\").nixosConfigurations.${hostName}.options'';
     };
 
     # Telemetry
@@ -84,7 +76,7 @@ let
 in {
   config = mkIf cfg.enable {
     environment.systemPackages =
-      [ vscode' inputs'.nixd.packages.nixd pkgs.nixfmt-classic ];
+      [ vscode' pkgs.nixd pkgs.nixfmt-classic ];
     homix.".config/Code/User/settings.json".text = config';
   };
 }

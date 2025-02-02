@@ -5,7 +5,7 @@
     fish.enable = true;
     foot.enable = true;
     lanzaboote.enable = true;
-    plymouth.enable = true;
+    plymouth.enable = false;
     vscode.enable = true;
   };
 

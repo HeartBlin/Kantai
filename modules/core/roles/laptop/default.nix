@@ -4,13 +4,16 @@ let
   inherit (lib) mkIf;
   inherit (config.Kantai) nvidia;
 in {
-  hardware.nvidia.prime = mkIf nvidia.enable {
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
+  config = {
+    # Force prime if Nvidia is enabled
+    hardware.nvidia.prime = mkIf nvidia.enable {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
 
-    amdgpuBusId = nvidia.busIDs.amd;
-    nvidiaBusId = nvidia.busIDs.nvidia;
+      amdgpuBusId = nvidia.busIDs.amd;
+      nvidiaBusId = nvidia.busIDs.nvidia;
+    };
   };
 }

@@ -3,6 +3,7 @@
 let
   inherit (lib) mkEnableOption;
   allModules = [
+    ./asus
     ./chrome
     ./fish
     ./foot
@@ -13,6 +14,7 @@ let
 in {
   # All oprional modules, every system can choose to have them or not
   options.Kantai = {
+    asus.enable = mkEnableOption "Enables asusd and supergfxd";
     chrome.enable = mkEnableOption "Enables the Chrome browser (actually chromium)";
     fish.enable = mkEnableOption "Enables the fish shell, starship prompt and direnv integration";
     foot.enable = mkEnableOption "Enables the foot terminal emulator";

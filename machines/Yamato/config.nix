@@ -12,6 +12,7 @@
     };
 
     # Public
+    asus.enable = true;
     chrome.enable = true;
     fish.enable = true;
     foot.enable = true;

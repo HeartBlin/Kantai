@@ -9,21 +9,9 @@ let
   }: withSystem system ( { inputs', self', ... }: let
       inherit (inputs.nixpkgs.lib) nixosSystem;
       args = { inherit hostName role userName prettyName system inputs inputs' self self'; };
-      defaultOptions = [
-        {
-          networking.hostName = hostName;
-          users.users."${userName}"= {
-            description = prettyName;
-            isNormalUser = true;
-            extraGroups = [ "wheel" "video" "networkmanager" ];
-            homix = true;
-          };
-        }
-      ];
     in nixosSystem {
       specialArgs = args;
-
-      modules = defaultOptions ++ [
+      modules = [
         # Modules from inputs
         inputs.chaotic.nixosModules.default
         inputs.homix.nixosModules.default

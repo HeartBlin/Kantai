@@ -15,6 +15,7 @@ let
   coreImports = [
     ./boot
     ./git
+    ./id
     ./security
     ./nix
   ];

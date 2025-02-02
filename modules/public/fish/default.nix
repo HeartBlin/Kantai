@@ -2,9 +2,9 @@
 
 let
   inherit (lib) getExe mkIf;
-  cfg = config.Kantai.vscode;
+  inherit (config.Kantai) fish;
 in {
-  config = mkIf cfg.enable {
+  config = mkIf fish.enable {
     # Set the users shell to 'fish'
     users.users."${userName}".shell = pkgs.fish;
     programs = {

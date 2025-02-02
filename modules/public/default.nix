@@ -3,6 +3,7 @@
 let
   inherit (lib) mkEnableOption;
   allModules = [
+    ./chrome
     ./fish
     ./foot
     ./lanzaboote
@@ -12,6 +13,7 @@ let
 in {
   # All oprional modules, every system can choose to have them or not
   options.Kantai = {
+    chrome.enable = mkEnableOption "Enables the Chrome browser (actually chromium)";
     fish.enable = mkEnableOption "Enables the fish shell, starship prompt and direnv integration";
     foot.enable = mkEnableOption "Enables the foot terminal emulator";
     lanzaboote.enable = mkEnableOption "Provides SecureBoot support";

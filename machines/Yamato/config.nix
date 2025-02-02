@@ -1,7 +1,8 @@
-{ config, hostName, pkgs, prettyName, userName, ... }:
+{ config, pkgs, ... }:
 
 {
   Kantai = {
+    chrome.enable = true;
     fish.enable = true;
     foot.enable = true;
     lanzaboote.enable = true;
@@ -9,7 +10,6 @@
     vscode.enable = true;
   };
 
-  networking.hostName = hostName;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   time.timeZone = "Europe/Bucharest";
@@ -37,15 +37,5 @@
     pulse.enable = true;
   };
 
-  users.users."${userName}"= {
-    description = prettyName;
-    isNormalUser = true;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
-    homix = true;
-    packages = with pkgs; [
-      chromium
-      neovim
-      git
-    ];
-  };
+
 }

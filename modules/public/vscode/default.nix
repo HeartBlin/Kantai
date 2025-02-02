@@ -4,7 +4,7 @@ let
   inherit (lib) mkIf;
   inherit (lib.generators) toJSON;
 
-  cfg = config.Kantai.vscode;
+  inherit (config.Kantai) vscode;
 
   vscode' = pkgs.vscode-with-extensions.override {
     vscodeExtensions = with pkgs.vscode-extensions; [
@@ -74,7 +74,7 @@ let
     "workbench.startupEditor" = "none";
   };
 in {
-  config = mkIf cfg.enable {
+  config = mkIf vscode.enable {
     environment.systemPackages =
       [ vscode' pkgs.nixd pkgs.nixfmt-classic ];
     homix.".config/Code/User/settings.json".text = config';

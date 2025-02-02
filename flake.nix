@@ -1,4 +1,6 @@
 {
+  description = "Unstable as @#$% dots. Powered by flake-parts";
+
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ ./machines ];

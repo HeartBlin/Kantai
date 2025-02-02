@@ -20,8 +20,9 @@ let
     ./git
     ./hardware/nvidia.nix
     ./id
-    ./security
     ./nix
+    ./pfp
+    ./security
   ];
 in {
   config.assertions = [

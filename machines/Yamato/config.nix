@@ -16,6 +16,7 @@
     chrome.enable = true;
     fish.enable = true;
     foot.enable = true;
+    hyprland.enable = true;
     lanzaboote.enable = true;
     plymouth.enable = false;
     vscode.enable = true;

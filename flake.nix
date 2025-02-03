@@ -18,7 +18,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Provides 'systems'
-    systems.url = "github:nix-systems/default";
+    systems.url = "github:nix-systems/x86_64-linux";
 
     ########### Everything else ###########
 
@@ -35,6 +35,14 @@
     homix = {
       url = "github:sioodmy/homix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
 
     # SecureBoot support

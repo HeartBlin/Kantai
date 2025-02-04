@@ -10,14 +10,15 @@ let
     monitor = eDP-1, 1920x1080@144, 0x0, 1
 
     ### Programs ###
-    $terminal = ${if foot.enable then getExe pkgs.foot else getExe pkgs.kitty}
+    $terminal = ${if foot.enable then "foot" else getExe pkgs.kitty}
     $fileManager = ${getExe pkgs.nautilus}
-    $menu = ${getExe pkgs.rofi-wayland}
-    $browser = ${if chrome.enable then getExe pkgs.chromium else getExe pkgs.firefox}
+    $menu = ${getExe pkgs.rofi-wayland} -show drun
+    $browser = ${if chrome.enable then "chromium" else getExe pkgs.firefox}
     $editor = ${if vscode.enable then "code" else getExe pkgs.neovim}
 
     ### Autostart ###
     exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+    exec-once = ags run
 
     ### Environment variables ###
     env = XCURSOR_SIZE,24
@@ -26,13 +27,13 @@ let
       env = LIVBA_DRIVER_NAME,nvidia
       env = XDG_SESSION_TYPE,wayland
       env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-      env = NVD_BACKEND,direct'' else ""
-    }
+      env = NVD_BACKEND,direct'' else
+      ""}
 
     ### Look and Feel ###
     general {
       gaps_in = 5
-      gaps_out = 20
+      gaps_out = 10
       border_size = 1
       col.active_border = rgba(33ccffee)
       col.inactive_border = rgba(595959aa)
@@ -172,7 +173,13 @@ in {
       portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
     };
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
-    homix.".config/hypr/hyprland.conf".text = hyprlandConfig;
+    environment = {
+      systemPackages = [ inputs'.ags.packages.agsFull ];
+      sessionVariables.NIXOS_OZONE_WL = "1";
+    };
+    homix = {
+      ".config/hypr/hyprland.conf".text = hyprlandConfig;
+      ".config/ags".source = ./ags;
+    };
   };
 }

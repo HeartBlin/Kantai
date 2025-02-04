@@ -37,12 +37,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Wayland compositor
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
+    };
+
+    # JS bar
+    ags = {
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # SecureBoot support

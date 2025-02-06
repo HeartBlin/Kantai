@@ -20,7 +20,7 @@ function InfoBox() {
   };
 
   return <box className="hostinfo">
-    <label label={getInfo()} widthRequest={300} heightRequest={35}/>
+    <label label={getInfo()} widthRequest={275} heightRequest={35}/>
   </box>
 }
 

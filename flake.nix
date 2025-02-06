@@ -3,7 +3,7 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [ ./machines ];
+      imports = [ ./machines ./packages ];
       systems = import inputs.systems;
     };
 

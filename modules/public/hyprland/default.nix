@@ -1,4 +1,4 @@
-{ config, inputs', lib, pkgs, ... }:
+{ config, inputs', lib, pkgs, self', ... }:
 
 let
   inherit (lib) getExe mkIf;
@@ -18,7 +18,7 @@ let
 
     ### Autostart ###
     exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-    exec-once = ags run
+    exec-once = ${getExe self'.packages.ags}
 
     ### Environment variables ###
     env = XCURSOR_SIZE,24
@@ -174,12 +174,10 @@ in {
     };
 
     environment = {
-      systemPackages = [ inputs'.ags.packages.agsFull ];
+      systemPackages = [ self'.packages.ags pkgs.google-fonts ];
       sessionVariables.NIXOS_OZONE_WL = "1";
     };
-    homix = {
-      ".config/hypr/hyprland.conf".text = hyprlandConfig;
-      ".config/ags".source = ./ags;
-    };
+
+    homix.".config/hypr/hyprland.conf".text = hyprlandConfig;
   };
 }

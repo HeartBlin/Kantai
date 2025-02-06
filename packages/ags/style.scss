@@ -2,12 +2,18 @@ window.Notch {
     background-color: transparent;
     label {
         background-color: transparent;
-        font-size: 15px;
         padding: 10px 10px;
     }
 
+    .hostinfo {
+        font-family: 'Outfit';
+        font-size: 15px;
+        font-weight: 500;
+        color:#FFF;
+    }
+
     .container-box {
-        background-color: black;
+        background-color: #000;
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
     }

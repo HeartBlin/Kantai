@@ -7,7 +7,7 @@ in {
 
   config = mkIf asus.enable {
     services = {
-      supergfxd.enable =  true;
+      supergfxd.enable = true;
       asusd = {
         enable = true;
         enableUserService = true;

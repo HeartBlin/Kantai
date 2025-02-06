@@ -9,9 +9,7 @@
       entry = "app.ts";
       gtk4 = false;
 
-      # extraPackages = [
-      #   pkgs.google-fonts
-      # ];
+      extraPackages = [ pkgs.google-fonts ];
     };
   };
 }

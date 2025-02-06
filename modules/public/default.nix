@@ -16,8 +16,10 @@ in {
   # All oprional modules, every system can choose to have them or not
   options.Kantai = {
     asus.enable = mkEnableOption "Enables asusd and supergfxd";
-    chrome.enable = mkEnableOption "Enables the Chrome browser (actually chromium)";
-    fish.enable = mkEnableOption "Enables the fish shell, starship prompt and direnv integration";
+    chrome.enable =
+      mkEnableOption "Enables the Chrome browser (actually chromium)";
+    fish.enable = mkEnableOption
+      "Enables the fish shell, starship prompt and direnv integration";
     foot.enable = mkEnableOption "Enables the foot terminal emulator";
     hyprland.enable = mkEnableOption "Enables the Hyprland wayland compsitor";
     lanzaboote.enable = mkEnableOption "Provides SecureBoot support";

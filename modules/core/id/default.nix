@@ -2,7 +2,7 @@
 
 {
   networking.hostName = hostName;
-  users.users."${userName}"= {
+  users.users."${userName}" = {
     description = prettyName;
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "networkmanager" ];

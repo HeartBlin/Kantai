@@ -10,6 +10,7 @@ let
     vscodeExtensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
       pkief.material-icon-theme
+      esbenp.prettier-vscode
     ];
   };
 
@@ -20,6 +21,7 @@ let
     "editor.defaultFormatter" = "esbenp.prettier-vscode";
     "editor.fontLigatures" = true;
     "editor.formatOnSave" = true;
+    "editor.formatOnSaveMode" = "file";
     "editor.guides.bracketPairs" = true;
     "editor.guides.indentation" = true;
     "editor.inlineSuggest.enabled" = true;
@@ -43,12 +45,29 @@ let
     "files.trimTrailingWhitespace" = true;
     "files.exclude" = { "tsconfig.json" = true; };
 
+    # Formatters
+    "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+    "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+    "[javascriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+    "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+    "[nix]" = {
+      "editor.defaultFormatter" = "jnoortheen.nix-ide";
+      "editor.formatOnSave" = true;
+    };
+
+    # Prettier
+    "prettier.requireConfig" = false;
+    "prettier.tabWidth" = 2;
+    "prettier.semi" = true;
+    "prettier.singleQuote" = false;
+
     # Nix
     "nix.enableLanguageServer" = true;
     "nix.serverPath" = "nixd";
     "nix.serverSettings"."nixd" = {
       "formatting"."command" = [ "nixfmt" ];
-      "options"."nixos"."expr" = ''(builtins.getFlake \"/home/${userName}/Kantai\").nixosConfigurations.${hostName}.options'';
+      "options"."nixos"."expr" = ''
+        (builtins.getFlake \"/home/${userName}/Kantai\").nixosConfigurations.${hostName}.options'';
     };
 
     # Telemetry
@@ -56,7 +75,8 @@ let
 
     # Terminal
     "terminal.integrated.smoothScrolling" = true;
-    "terminal.integrated.defaultProfile.linux" = "${config.users.users."${userName}".shell}";
+    "terminal.integrated.defaultProfile.linux" =
+      "${config.users.users."${userName}".shell}";
 
     # Window
     "window.autoDetectColorScheme" = true;
@@ -76,7 +96,7 @@ let
 in {
   config = mkIf vscode.enable {
     environment.systemPackages =
-      [ vscode' pkgs.nixd pkgs.nixfmt-classic ];
+      [ vscode' pkgs.nixd pkgs.nixfmt-classic pkgs.nodePackages.prettier ];
     homix.".config/Code/User/settings.json".text = config';
   };
 }

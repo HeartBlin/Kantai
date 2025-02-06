@@ -1,7 +1,6 @@
 { lib, ... }:
 
-let
-  inherit (lib) mkForce;
+let inherit (lib) mkForce;
 in {
   boot = {
     bootspec.enable = mkForce true;

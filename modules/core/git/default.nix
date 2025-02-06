@@ -27,7 +27,7 @@ in {
       gpg.format = "ssh";
       user = {
         email = "heartblin@gmail.com"; # Doxxed LEL
-        name = "HeartBlin";            #
+        name = "HeartBlin";
         signingkey = "/home/${userName}/.ssh/id_ed25519.github_signing.pub";
       };
     };

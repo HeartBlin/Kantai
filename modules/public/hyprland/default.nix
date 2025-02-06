@@ -174,7 +174,7 @@ in {
     };
 
     environment = {
-      systemPackages = [ self'.packages.ags pkgs.google-fonts ];
+      systemPackages = [ self'.packages.ags ];
       sessionVariables.NIXOS_OZONE_WL = "1";
     };
 

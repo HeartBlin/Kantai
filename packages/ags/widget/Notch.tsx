@@ -7,21 +7,24 @@ function InfoBox() {
     try {
       const hostname = exec("hostname").trim();
       const username = exec("whoami").trim();
-      const prettyName = exec(`getent passwd ${username}`)
-        .trim()
-        .split(':')[4]
-        ?.split(',')[0]
-        ?.trim() || username;
+      const prettyName =
+        exec(`getent passwd ${username}`)
+          .trim()
+          .split(":")[4]
+          ?.split(",")[0]
+          ?.trim() || username;
 
       return `${hostname} @ ${prettyName}`;
     } catch (error) {
-      return "Unknown@Unknown"
+      return "Unknown@Unknown";
     }
   };
 
-  return <box className="hostinfo">
-    <label label={getInfo()} widthRequest={275} heightRequest={35}/>
-  </box>
+  return (
+    <box className="hostinfo">
+      <label label={getInfo()} widthRequest={275} heightRequest={35} />
+    </box>
+  );
 }
 
 export default function Notch(monitor: Gdk.Monitor) {

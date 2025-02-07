@@ -6,10 +6,8 @@
       inherit pkgs;
       src = ./.;
       name = "shell";
-      entry = "app.ts";
+      entry = "main.ts";
       gtk4 = false;
-
-      extraPackages = [ pkgs.google-fonts ];
     };
   };
 }

@@ -1,20 +1,5 @@
-window.Notch {
-    background-color: transparent;
-    label {
-        background-color: transparent;
-        padding: 10px 10px;
-    }
+@use "styles/_components.scss";
 
-    .hostinfo {
-        font-family: 'Outfit';
-        font-size: 15px;
-        font-weight: 500;
-        color:#FFF;
-    }
-
-    .container-box {
-        background-color: #000;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-    }
+* {
+  all: unset;
 }

@@ -1,0 +1,17 @@
+@use "_variables.scss" as vars;
+
+window.shell {
+  background-color: transparent;
+}
+
+.notch {
+  background-color: #000;
+  border-bottom-left-radius: vars.$rounding;
+  border-bottom-right-radius: vars.$rounding;
+
+  &_label {
+    color: #fff;
+    font-family: "Outfit";
+    font-size: 17px;
+  }
+}

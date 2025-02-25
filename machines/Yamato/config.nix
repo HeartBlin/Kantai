@@ -40,4 +40,5 @@
     pulse.enable = true;
   };
 
+  environment.systemPackages = [ pkgs.ciscoPacketTracer8 ];
 }

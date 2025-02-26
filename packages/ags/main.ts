@@ -1,5 +1,6 @@
-import { App, Gtk } from "astal/gtk3";
-import createShell from "./modules/Shell";
+import { App } from "astal/gtk3";
+import createShell from "./modules/Bar/Shell";
+import createWallpaper from "./modules/Desktop/Wallpaper";
 import style from "./style.scss";
 
 App.start({
@@ -7,13 +8,8 @@ App.start({
   css: style,
   main: () => {
     App.get_monitors().forEach((monitor) => {
-      const shell = createShell(monitor);
-
-      shell.connect("size-allocate", (widget: Gtk.Widget) => {
-        const height = widget.get_allocation().height;
-        const monitorId = monitor.display.get_name();
-        console.log(`Actual bar height for ${monitorId}: ${height}px`);
-      });
+      createWallpaper(monitor);
+      createShell(monitor);
     });
   },
 });

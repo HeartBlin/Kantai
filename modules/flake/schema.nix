@@ -14,6 +14,7 @@ in {
 
   config.flake = let
     options.nimic = {
+      flake = mkOption { type = str; };
       user = mkOption { type = str; };
     };
   in {

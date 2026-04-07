@@ -7,4 +7,6 @@ All of them are under the `nimic` namespace. The terminology `clients|client` is
 
 | Option name | Type | Description |
 | ----------- | ---- | ----------- |
+| `flake` | `str` | Sets where this flake currently resides (path/repo) |
 | `user`  | `str` | Sets the username used for a `client` |
+

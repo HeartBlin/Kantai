@@ -11,6 +11,7 @@
       nixos.core
 
       nixos.git
+      nixos.plymouth
     ];
 
     networking.hostName = "Void";

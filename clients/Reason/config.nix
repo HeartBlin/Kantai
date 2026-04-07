@@ -5,9 +5,12 @@
     inherit (config.flake.modules) nixos;
   in {
     imports = [
+      # Mandatory
       nixos._Reason-Disko
       nixos._Reason-Constants
+
       nixos.core
+      nixos.ssh
     ];
 
     networking.hostName = "Reason";

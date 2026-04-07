@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  nimic.nixos.Strix.module = { ... }: let
+  nimic.nixos.Strix.module = _: let
     inherit (config.flake.modules) nixos;
   in {
     imports = [

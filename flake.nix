@@ -16,6 +16,9 @@
 
     hjem.url = "github:feel-co/hjem";
     hjem.inputs.nix-darwin.follows = "";
+
+    treefmt-nix.  url = "github:numtide/treefmt-nix";
+    treefmt-nix. inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: let

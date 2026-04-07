@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 
 {
-  flake.diskoConfigurations.Msi = {
+  flake.diskoConfigurations.Reason = {
     disko.devices.disk.main = {
       device = "/dev/disk/by-id/ata-KINGSTON-SKC600512G_50026B7784CD5F58";
       type = "disk";
@@ -38,8 +38,8 @@
     };
   };
 
-  flake.modules.nixos._Msi-Disko = {
+  flake.modules.nixos._Reason-Disko = {
     imports = [ inputs.disko.nixosModules.disko ];
-    disko = { inherit (config.flake.diskoConfigurations.Msi.disko) devices; };
+    disko = { inherit (config.flake.diskoConfigurations.Reason.disko) devices; };
   };
 }

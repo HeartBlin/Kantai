@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 
 {
-  flake.diskoConfigurations.Strix = {
+  flake.diskoConfigurations.Void = {
     disko.devices = {
       disk = {
         samsung = {
@@ -87,8 +87,8 @@
     };
   };
 
-  flake.modules.nixos._Strix-Disko = {
+  flake.modules.nixos._Void-Disko = {
     imports = [ inputs.disko.nixosModules.disko ];
-    disko = { inherit (config.flake.diskoConfigurations.Strix.disko) devices; };
+    disko = { inherit (config.flake.diskoConfigurations.Void.disko) devices; };
   };
 }

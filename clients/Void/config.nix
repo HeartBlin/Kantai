@@ -10,6 +10,7 @@
       nixos._Void-Constants
       nixos.core
 
+      nixos.amd
       nixos.git
       nixos.plymouth
     ];

@@ -1,17 +1,26 @@
 { config, inputs, lib, self, ... }:
 
-{
-  options.nimic.nixos = lib.mkOption {
-    type = lib.types.lazyAttrsOf (lib.types.submodule {
-      options.module = lib.mkOption { type = lib.types.deferredModule; };
-    });
+let
+  inherit (lib) mkOption;
+  inherit (lib.types) str;
+in {
+  options.nimic = {
+    nixos = lib.mkOption {
+      type = lib.types.lazyAttrsOf (lib.types.submodule {
+        options.module = lib.mkOption { type = lib.types.deferredModule; };
+      });
+    };
   };
 
-  config.flake = {
+  config.flake = let
+    options.nimic = {
+      user = mkOption { type = str; };
+    };
+  in {
     nixosConfigurations = lib.flip lib.mapAttrs config.nimic.nixos (_: { module }:
       lib.nixosSystem {
         specialArgs = { inherit inputs self; };
-        modules = [ module ];
+        modules = [ module { inherit options; } ];
       });
   };
 }

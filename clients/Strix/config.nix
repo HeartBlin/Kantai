@@ -4,7 +4,11 @@
   nimic.nixos.Strix.module = { ... }: let
     inherit (config.flake.modules) nixos;
   in {
-    imports = [ nixos._Strix-Disko nixos.core ];
+    imports = [
+      nixos._Strix-Disko
+      nixos._Strix-Constants
+      nixos.core
+    ];
 
     networking.hostName = "Strix";
     nixpkgs.hostPlatform = "x86_64-linux";

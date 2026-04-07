@@ -13,6 +13,9 @@
     lanzaboote.url = "github:nix-community/lanzaboote/v1.0.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.inputs.pre-commit.follows = "";
+
+    hjem.url = "github:feel-co/hjem";
+    hjem.inputs.nix-darwin.follows = "";
   };
 
   outputs = inputs: let

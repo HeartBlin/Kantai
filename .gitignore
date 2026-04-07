@@ -1,0 +1,9 @@
+.jj/
+.vscode/
+
+result
+result-*
+result/
+
+.direnv/
+.envrc

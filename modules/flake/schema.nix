@@ -14,7 +14,9 @@ in {
 
   config.flake = let
     options.nimic = {
+      email = mkOption { type = str; };
       flake = mkOption { type = str; };
+      gitName = mkOption { type = str; };
       user = mkOption { type = str; };
     };
   in {

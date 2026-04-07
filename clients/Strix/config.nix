@@ -5,9 +5,12 @@
     inherit (config.flake.modules) nixos;
   in {
     imports = [
+      # Mandatory
       nixos._Strix-Disko
       nixos._Strix-Constants
       nixos.core
+
+      nixos.git
     ];
 
     networking.hostName = "Strix";

@@ -1,16 +1,14 @@
 { config, ... }:
 
 {
-  nimic.nixos.Reason.module = _: let
-    inherit (config.flake.modules) nixos;
-  in {
-    imports = [
+  nimic.nixos.Reason.module = {
+    imports = with config.flake.modules.nixos; [
       # Mandatory
-      nixos._Reason-Disko
-      nixos._Reason-Constants
+      _Reason-Disko
+      _Reason-Constants
+      core
 
-      nixos.core
-      nixos.ssh
+      ssh
     ];
 
     networking.hostName = "Reason";

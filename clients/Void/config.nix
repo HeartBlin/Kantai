@@ -1,18 +1,16 @@
 { config, ... }:
 
 {
-  nimic.nixos.Void.module = _: let
-    inherit (config.flake.modules) nixos;
-  in {
-    imports = [
+  nimic.nixos.Void.module = {
+    imports = with config.flake.modules.nixos; [
       # Mandatory
-      nixos._Void-Disko
-      nixos._Void-Constants
-      nixos.core
+      _Void-Disko
+      _Void-Constants
+      core
 
-      nixos.amd
-      nixos.git
-      nixos.plymouth
+      amd
+      git
+      plymouth
     ];
 
     networking.hostName = "Void";

@@ -8,6 +8,7 @@
       _Void-Constants
       core
 
+      audio
       amd
       asus
       git

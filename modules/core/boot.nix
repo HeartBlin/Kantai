@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  flake.modules.nixos.core = { lib, ... }: {
+  flake.modules.nixos.core = {
     imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
     boot = {

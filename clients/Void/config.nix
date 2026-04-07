@@ -9,6 +9,7 @@
       core
 
       amd
+      asus
       git
       plymouth
     ];

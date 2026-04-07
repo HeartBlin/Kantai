@@ -1,23 +1,19 @@
 { inputs, ... }:
 
 {
-  flake.modules.nixos.core = { config, lib, ... }: let
-    iStrix = config.networking.hostName == "Strix";
-  in {
+  flake.modules.nixos.core = { lib, ... }: {
     imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
     boot = {
-      kernelParams =
-        [
-          "splash"
-          "quiet"
-          "loglevel=3"
-          "systemd.show_status=auto"
-          "rd.systemd.show_status=false"
-          "rd.udev.log_level=3"
-          "udev.log_priority=3"
-        ]
-        ++ lib.optional iStrix "i8042.nokbd";
+      kernelParams = [
+        "splash"
+        "quiet"
+        "loglevel=3"
+        "systemd.show_status=auto"
+        "rd.systemd.show_status=false"
+        "rd.udev.log_level=3"
+        "udev.log_priority=3"
+      ];
 
       initrd.systemd.enable = true;
       bootspec.enable = true;

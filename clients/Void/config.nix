@@ -21,6 +21,7 @@
       plymouth
       uni
       vicinae
+      vscode
       waydroid
       winboat
     ];

@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  flake.modules.nixos.core = { config, pkgs, ... }: let
+  flake.modules.nixos.core = { config, ... }: let
     inherit (config.nimic) user;
   in {
     imports = [ inputs.hjem.nixosModules.default ];

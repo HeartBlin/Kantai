@@ -20,6 +20,7 @@
       nvidia
       plymouth
       uni
+      vicinae
       waydroid
       winboat
     ];

@@ -16,6 +16,7 @@
       git
       nvidia
       plymouth
+      uni
       waydroid
       winboat
     ];

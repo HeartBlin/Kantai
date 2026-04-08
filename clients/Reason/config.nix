@@ -8,6 +8,7 @@
       _Reason-Constants
       core
 
+      intel
       ssh
     ];
 

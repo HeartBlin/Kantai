@@ -12,6 +12,7 @@
       amd
       asus
       bluetooth
+      fish
       git
       nvidia
       plymouth

@@ -8,6 +8,7 @@
       _Reason-Constants
       core
 
+      fish
       intel
       nvidia
       ssh

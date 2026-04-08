@@ -17,6 +17,7 @@
       fonts
       foot
       gaming
+      gdm
       git
       nvidia
       plymouth

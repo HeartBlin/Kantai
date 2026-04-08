@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkOption;
-  inherit (lib.types) str;
+  inherit (lib.types) bool str;
 in {
   options.nimic = {
     nixos = lib.mkOption {
@@ -18,6 +18,13 @@ in {
       flake = mkOption { type = str; };
       gitName = mkOption { type = str; };
       user = mkOption { type = str; };
+
+      nvidia = {
+        prime = mkOption { type = bool; };
+        amdgpuBusId = mkOption { type = str; };
+        nvidiaBusId = mkOption { type = str; };
+        perDinam = mkOption { type = bool; };
+      };
     };
   in {
     nixosConfigurations = lib.flip lib.mapAttrs config.nimic.nixos (_: { module }:

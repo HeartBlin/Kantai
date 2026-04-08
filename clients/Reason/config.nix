@@ -9,6 +9,7 @@
       core
 
       intel
+      nvidia
       ssh
     ];
 

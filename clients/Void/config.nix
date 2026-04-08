@@ -13,6 +13,7 @@
       asus
       bluetooth
       git
+      nvidia
       plymouth
     ];
 

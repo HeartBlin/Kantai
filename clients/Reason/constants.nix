@@ -5,6 +5,13 @@
       flake = "gitlab:heart.blin/nimic";
       gitName = false;
       user = "server";
+
+      nvidia = {
+        prime = false;
+        perDinam = false;
+        nvidiaBusId = false;
+        amdgpuBusId = false;
+      };
     };
   };
 }

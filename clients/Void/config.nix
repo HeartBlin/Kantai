@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  nimic.nixos.Void.module = {
+  nimic.nixos.Void.module = { pkgs, ... }: {
     imports = with config.flake.modules.nixos; [
       # Mandatory
       _Void-Disko
@@ -20,6 +20,9 @@
       waydroid
       winboat
     ];
+
+    services.fstrim.enable = true;
+    boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
     networking.hostName = "Void";
     nixpkgs.hostPlatform = "x86_64-linux";

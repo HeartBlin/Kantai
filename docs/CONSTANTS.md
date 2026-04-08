@@ -16,3 +16,5 @@ All of them are under the `nimic` namespace. The terminology `clients|client` is
 | `nvidia.amdgpuBusId` | `str` | Specifies the bus ID for AMDGPU |
 | `nvidia.nvidiaBusId` | `str` | Specifies the bus ID for NVIDIA |
 | `nvidia.perDinam` | `bool` | Enables Persistenced & dynamicBoost |
+| `domain` | `str` | Base domain name |
+| `acmeEmail` | `str` | Email to use with ACME |

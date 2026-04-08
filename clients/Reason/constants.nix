@@ -12,6 +12,9 @@
         nvidiaBusId = false;
         amdgpuBusId = false;
       };
+
+      domain = "heartblin.eu";
+      acmeEmail = "manea.emil@proton.me";
     };
   };
 }

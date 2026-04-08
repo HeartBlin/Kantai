@@ -24,6 +24,10 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    agenix.url = "github:ryantm/agenix";
+    secrets.url = "git+ssh://git@gitlab.com/heart.blin/nimic-agenix.git";
+    secrets.flake = false;
   };
 
   outputs = inputs: let

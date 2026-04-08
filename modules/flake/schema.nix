@@ -25,12 +25,18 @@ in {
         nvidiaBusId = mkOption { type = str; };
         perDinam = mkOption { type = bool; };
       };
+
+      domain = mkOption { type = str; };
+      acmeEmail = mkOption { type = str; };
     };
   in {
     nixosConfigurations = lib.flip lib.mapAttrs config.nimic.nixos (_: { module }:
       lib.nixosSystem {
-        specialArgs = { inherit inputs self; };
         modules = [ module { inherit options; } ];
+        specialArgs = {
+          inherit inputs self;
+          inherit (inputs) secrets;
+        };
       });
   };
 }

@@ -1,5 +1,6 @@
 {
   flake.modules.nixos.chromium = { config, lib, pkgs, ... }: let
+    inherit (config.nimic) domain;
     extensions = [
       "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
       "ghmbeldphafepmbegfdlkpapadhbakde" # ProtonPass
@@ -66,32 +67,32 @@
                 "children" = [
                   {
                     "name" = "Glance";
-                    "url" = "https://heartblin.eu";
+                    "url" = "https://${domain}";
                     "type" = "url";
                   }
                   {
                     "name" = "Jellyfin";
-                    "url" = "https://movies.heartblin.eu";
+                    "url" = "https://movies.${domain}";
                     "type" = "url";
                   }
                   {
                     "name" = "Nextcloud";
-                    "url" = "https://cloud.heartblin.eu";
+                    "url" = "https://cloud.${domain}";
                     "type" = "url";
                   }
                   {
                     "name" = "Scrutiny";
-                    "url" = "https://scrutiny.heartblin.eu";
+                    "url" = "https://scrutiny.${domain}";
                     "type" = "url";
                   }
                   {
                     "name" = "Uptime";
-                    "url" = "https://uptime.heartblin.eu";
+                    "url" = "https://uptime.${domain}";
                     "type" = "url";
                   }
                   {
                     "name" = "VaultWarden";
-                    "url" = "https://vault.heartblin.eu";
+                    "url" = "https://vault.${domain}";
                     "type" = "url";
                   }
                 ];

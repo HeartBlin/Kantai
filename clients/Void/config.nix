@@ -15,6 +15,7 @@
       git
       nvidia
       plymouth
+      winboat
     ];
 
     networking.hostName = "Void";

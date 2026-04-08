@@ -14,6 +14,7 @@
       bluetooth
       chromium
       fish
+      fonts
       foot
       gaming
       git

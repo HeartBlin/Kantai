@@ -14,6 +14,7 @@
       bluetooth
       chromium
       fish
+      foot
       git
       nvidia
       plymouth

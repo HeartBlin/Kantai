@@ -1,7 +1,7 @@
 { inputs, moduleWithSystem, ... }:
 
 {
-  flake.modules.nixos.hyprland = moduleWithSystem ({ inputs', self', ... }: { lib, pkgs, ... }: {
+  flake.modules.nixos.hyprland = moduleWithSystem ({ inputs', self', ... }: { pkgs, ... }: {
     imports = [ inputs.hyprland.nixosModules.default ];
     programs = {
       dconf.enable = true;

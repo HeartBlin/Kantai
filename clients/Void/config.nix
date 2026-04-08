@@ -15,6 +15,7 @@
       chromium
       fish
       foot
+      gaming
       git
       nvidia
       plymouth

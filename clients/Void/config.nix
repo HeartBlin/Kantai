@@ -11,6 +11,7 @@
       audio
       amd
       asus
+      bluetooth
       git
       plymouth
     ];

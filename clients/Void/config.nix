@@ -21,6 +21,7 @@
       git
       nvidia
       plymouth
+      theme
       uni
       vicinae
       vscode

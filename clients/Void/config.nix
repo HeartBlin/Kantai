@@ -12,6 +12,7 @@
       amd
       asus
       bluetooth
+      chromium
       fish
       git
       nvidia

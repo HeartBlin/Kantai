@@ -19,6 +19,7 @@
       gaming
       gdm
       git
+      hyprland
       nvidia
       plymouth
       theme

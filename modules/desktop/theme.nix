@@ -39,15 +39,13 @@
 
     programs.dconf.profiles.user.databases = [
       {
-        settings = {
-          "org/gnome/desktop/interface" = {
-            gtk-theme = "Adwaita-dark";
-            color-scheme = "prefer-dark";
-            icon-theme = "Adwaita";
-            cursor-theme = "Bibata-Modern-Ice";
-            font-name = "Cantarell 11";
-            cursor-size = lib.gvariant.mkInt32 24;
-          };
+        settings."org/gnome/desktop/interface" = {
+          gtk-theme = "Adwaita-dark";
+          color-scheme = "prefer-dark";
+          icon-theme = "Adwaita";
+          cursor-theme = "Bibata-Modern-Ice";
+          font-name = "Cantarell 11";
+          cursor-size = lib.gvariant.mkInt32 24;
         };
       }
     ];

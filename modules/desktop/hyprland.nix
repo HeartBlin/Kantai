@@ -25,6 +25,7 @@
             "QT_QPA_PLATFORMTHEME,gnome"
             "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
             "SDL_VIDEODRIVER,wayland"
+            "NVD_BACKEND,direct"
             "ELECTRON_OZONE_PLATFORM_HINT,wayland"
             "OZONE_PLATFORM,wayland"
             "XDG_SESSION_TYPE,wayland"

@@ -13,7 +13,8 @@
     };
 
     nix = {
-      package = pkgs.nixVersions.latest;
+      # package = pkgs.nixVersions.latest;
+      package = pkgs.lix;
       channel.enable = false;
       inherit registry nixPath;
 
@@ -35,9 +36,7 @@
           "auto-allocate-uids"
           "cgroups"
           "flakes"
-          "git-hashing"
           "nix-command"
-          "pipe-operators"
         ];
 
         allowed-users = [ "@wheel" ];

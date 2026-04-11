@@ -13,6 +13,7 @@
       asus
       bluetooth
       chromium
+      discord
       fish
       fonts
       foot

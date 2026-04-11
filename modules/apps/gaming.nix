@@ -34,9 +34,7 @@
         enableRenice = false;
         settings = {
           custom = { inherit start end; };
-          general = {
-            softrealtime = "auto";
-          };
+          general.softrealtime = "auto";
         };
       };
 
@@ -45,14 +43,6 @@
         extraCompatPackages = [ pkgs.proton-ge-bin ];
         package = pkgs.steam.override {
           extraArgs = "-system-composer";
-          extraEnv = {
-            PROTON_ENABLE_NGX_UPDATER = "1";
-            DXVK_NVAPI_DRS_SETTINGS = "NGX_DLSS_RR_OVERRIDE=on,NGX_DLSS_SR_OVERRIDE=on,NGX_DLSS_FG_OVERRIDE=on,NGX_DLSS_RR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_latest,NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_latest";
-            __NV_PRIME_RENDER_OFFLOAD = "1";
-            __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
-            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-            __VK_LAYER_NV_optimus = "NVIDIA_only";
-          };
         };
       };
     };

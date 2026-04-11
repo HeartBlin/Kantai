@@ -3,7 +3,13 @@
     registry = builtins.mapAttrs (_: flake: { inherit flake; }) inputs;
     nixPath = lib.mapAttrsToList (x: _: "${x}=flake:${x}") inputs;
   in {
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowAliases = false;
+      allowBroken = false;
+      allowUnfree = true;
+      allowUnsupportedSystem = false;
+    };
+
     documentation = {
       enable = false;
       doc.enable = false;
@@ -36,6 +42,9 @@
           "cgroups"
           "flakes"
           "nix-command"
+          "recursive-nix"
+          "git-hashing"
+          "verified-fetches"
         ];
 
         allowed-users = [ "@wheel" ];

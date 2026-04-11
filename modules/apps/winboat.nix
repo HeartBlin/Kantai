@@ -20,7 +20,6 @@
 
     environment.systemPackages = [
       pkgs.winboat
-      pkgs.dive
       pkgs.podman-tui
       pkgs.podman-compose
     ];

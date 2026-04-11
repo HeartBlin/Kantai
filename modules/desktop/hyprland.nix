@@ -223,12 +223,8 @@
       systemPackages = with pkgs; [
         libsecret
         nautilus
-        loupe
         file-roller
-        gnome-disk-utility
         hyprshot
-        libnotify
-        mission-center
         brightnessctl
         glib
         gsettings-desktop-schemas

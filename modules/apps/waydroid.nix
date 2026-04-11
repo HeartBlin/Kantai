@@ -7,6 +7,7 @@
       enable = true;
       package = pkgs.waydroid-nftables;
     };
+
     systemd.services = {
       waydroid-container.serviceConfig = {
         Delegate = true;

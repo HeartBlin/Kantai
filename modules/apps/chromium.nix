@@ -24,10 +24,9 @@
     ];
   in {
     environment.systemPackages = [
-      (pkgs.chromium.override {
-        inherit commandLineArgs;
-      })
+      (pkgs.chromium.override { inherit commandLineArgs; })
     ];
+
     programs.chromium = {
       enable = true;
       inherit extensions;

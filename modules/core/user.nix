@@ -7,7 +7,7 @@
     imports = [ inputs.hjem.nixosModules.default ];
     users.users."${user}" = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "video" "wheel" "libvirtd" "kvm" ];
+      extraGroups = [ "networkmanager" "video" "wheel" ];
     };
 
     hjem = {

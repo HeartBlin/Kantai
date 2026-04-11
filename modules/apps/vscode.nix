@@ -190,9 +190,6 @@
       meson
       muon
 
-      # Repo
-      jujutsu
-
       # Extensions
       (vscode-with-extensions.override {
         inherit vscode;

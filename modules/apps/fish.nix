@@ -1,11 +1,7 @@
 {
   flake.modules.nixos.fish = { config, inputs, pkgs, ... }: {
     imports = [ inputs.nix-index-database.nixosModules.default ];
-    environment = {
-      variables.TMPDIR = "/tmp";
-      systemPackages = [ pkgs.ovhcloud-cli ];
-    };
-
+    environment.variables.TMPDIR = "/tmp";
     users.users.${config.nimic.user}.shell = pkgs.fish;
     programs = {
       command-not-found.enable = false;

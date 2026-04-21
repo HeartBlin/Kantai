@@ -1,7 +1,6 @@
 {
-  flake.modules.nixos.server = { config, ... }: {
+  flake.modules.nixos.server = {
     services = let
-      inherit (config.nimic) domain;
       host = "127.0.0.1";
       port = 3001;
     in {
@@ -11,14 +10,6 @@
           "UPTIME_KUMA_HOST" = host;
           "UPTIME_KUMA_PORT" = toString port;
         };
-      };
-
-      caddy.virtualHosts."uptime.${domain}" = {
-        useACMEHost = "${domain}";
-        extraConfig = ''
-          reverse_proxy ${host}:${toString port}
-          header -Server
-        '';
       };
     };
   };

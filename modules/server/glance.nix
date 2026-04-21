@@ -120,14 +120,6 @@
           ];
         };
       };
-
-      caddy.virtualHosts."${domain}" = {
-        useACMEHost = "${domain}";
-        extraConfig = ''
-          reverse_proxy ${host}:${toString port}
-          header -Server
-        '';
-      };
     };
   };
 }

@@ -15,7 +15,7 @@
       Reason = {
         type = "app";
         program = toString (pkgs.writeShellScript "reason" ''
-          exec ${pkgs.nh}/bin/nh os switch . -u \
+          exec ${pkgs.nh}/bin/nh os switch . \
             --hostname Reason \
             --target-host server@reason
         '');
@@ -24,7 +24,7 @@
       Void = {
         type = "app";
         program = toString (pkgs.writeShellScript "rebuild-void" ''
-          exec ${pkgs.nh}/bin/nh os switch . -u \
+          exec ${pkgs.nh}/bin/nh os switch . \
             --hostname Void
         '');
       };

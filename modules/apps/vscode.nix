@@ -146,6 +146,9 @@
         "editor.defaultFormatter" = "haskell.haskell";
         "editor.formatOnSave" = true;
       };
+
+      # Language Server - Qt/QML
+      "qt-qml.qmlls.useQmlImportPathEnvVar" = true;
     };
 
     keybindJSON = builtins.toJSON [
@@ -185,6 +188,9 @@
       # Haskell tools
       ghc
       haskell-language-server
+
+      # Qt/QML
+      kdePackages.qtdeclarative
 
       # Build systems
       meson

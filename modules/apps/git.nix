@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.git = { config, pkgs, ... }: let
+  flake.modules.nixos.git = { config, ... }: let
     inherit (config.nimic) user email gitName;
   in {
     programs.git = {

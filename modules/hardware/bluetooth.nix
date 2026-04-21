@@ -6,7 +6,6 @@
       settings.General.Experimental = true;
     };
 
-    environment.systemPackages = [ pkgs.galaxy-buds-client ];
     systemd.user.services.mpris-proxy = {
       description = "Mpris proxy";
       after = [ "network.target" "sound.target" ];

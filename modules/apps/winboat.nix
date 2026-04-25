@@ -1,27 +1,27 @@
-{
-  flake.modules.nixos.winboat = { config, pkgs, ... }: {
-    users.users.${config.nimic.user}.extraGroups = [ "libvirtd" "kvm" ];
-    virtualisation = {
-      containers.enable = true;
-      podman = {
-        enable = true;
-        dockerCompat = true;
-      };
+{ config, pkgs, ... }:
 
-      libvirtd = {
-        enable = true;
-        qemu = {
-          package = pkgs.qemu_kvm;
-          runAsRoot = true;
-          swtpm.enable = true;
-        };
-      };
+{
+  users.users.${config.nimic.user}.extraGroups = [ "libvirtd" "kvm" ];
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
     };
 
-    environment.systemPackages = [
-      pkgs.winboat
-      pkgs.podman-tui
-      pkgs.podman-compose
-    ];
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+        swtpm.enable = true;
+      };
+    };
   };
+
+  environment.systemPackages = [
+    pkgs.winboat
+    pkgs.podman-tui
+    pkgs.podman-compose
+  ];
 }

@@ -1,9 +1,0 @@
-image: docker.nix-community.org/nixpkgs/cachix-flakes
-
-stages:
-  - check
-
-flake-checks:
-  stage: check
-  script:
-    - nix flake check --all-systems

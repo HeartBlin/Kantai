@@ -1,22 +1,19 @@
-{ inputs, ... }:
+{ config, ... }:
 
 {
-  flake.modules.nixos.core = { config, ... }: let
-    inherit (config.nimic) user;
-  in {
-    imports = [ inputs.hjem.nixosModules.default ];
-    users.users."${user}" = {
-      isNormalUser = true;
-      extraGroups = [ "networkmanager" "video" "wheel" ];
-    };
+  users.users.${config.nimic.user} = {
+    isNormalUser = true;
+    description = config.nimic.name;
+    initialPassword = "password";
+    extraGroups = [ "networkmanager" "video" "wheel" ];
+  };
 
-    hjem = {
-      clobberByDefault = true;
-      users.${user} = {
-        inherit user;
-        enable = true;
-        directory = "/home/${user}";
-      };
+  hjem = {
+    clobberByDefault = true;
+    users.${config.nimic.user} = {
+      inherit (config.nimic) user;
+      enable = true;
+      directory = "/home/${config.nimic.user}";
     };
   };
 }

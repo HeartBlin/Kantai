@@ -1,9 +1,9 @@
+_:
+
 {
-  flake.modules.nixos.amd = {
-    boot.kernelParams = [ "amd_pstate=active" ];
-    hardware = {
-      cpu.amd.updateMicrocode = true;
-      enableRedistributableFirmware = true;
-    };
+  boot.kernelParams = [ "amd_pstate=active" ];
+  hardware = {
+    cpu.amd.updateMicrocode = true;
+    enableRedistributableFirmware = true;
   };
 }

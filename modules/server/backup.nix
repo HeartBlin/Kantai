@@ -1,16 +1,16 @@
-{ config, pkgs, ... }:
+{ config, pkgs, self, ... }:
 
 {
   age.secrets = {
     "restic" = {
-      file = /etc/nixos/secrets/restic.age;
+      file = "${self}/secrets/restic.age";
       owner = "root";
       group = "root";
       mode = "0400";
     };
 
     "ovh" = {
-      file = /etc/nixos/secrets/ovh.age;
+      file = "${self}/secrets/ovh.age";
       owner = "root";
       group = "root";
       mode = "0400";

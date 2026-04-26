@@ -1,6 +1,5 @@
 let
   sources = import ./npins;
-  cachyosKernels = import sources.cachyos-kernel;
   pkgs = import sources.nixpkgs {
     config = {
       allowAliases = false;
@@ -12,7 +11,6 @@ let
     };
 
     overlays = [
-      cachyosKernels.overlays.pinned
       (final: _: {
         alejandra-custom = import ./packages/alejandra-custom { pkgs = final; };
         ltspice = import ./packages/ltspice { pkgs = final; };
@@ -35,7 +33,8 @@ in
         # Pass 'sources'
         { _module.args.sources = sources; }
 
-        # Pass my custom lib (For now only toHyprconf)
-        { _module.args.lib' = import ./lib/toHyprconf.nix { inherit (pkgs) lib; }; }
+        # Pass my custom lib and "self"
+        { _module.args.lib' = import ./lib { inherit (pkgs) lib; }; }
+        { _module.args.self = pkgs.lib.cleanSource ./.; }
       ]
       ++ modules)

@@ -13,19 +13,6 @@
       "url": "https://github.com/ryantm/agenix/archive/b027ee29d959fda4b60b57566d64c98a202e0feb.tar.gz",
       "hash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I="
     },
-    "cachyos-kernel": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "xddxdd",
-        "repo": "nix-cachyos-kernel"
-      },
-      "branch": "release",
-      "submodules": false,
-      "revision": "acb94409639d6d6d64bea140f939ac34938560b1",
-      "url": "https://github.com/xddxdd/nix-cachyos-kernel/archive/acb94409639d6d6d64bea140f939ac34938560b1.tar.gz",
-      "hash": "sha256-qaqHPZO3oQJiIZgD6sp5HKwvYAVyMtHVJiXVwPSEkx0="
-    },
     "disko": {
       "type": "Git",
       "repository": {
@@ -77,9 +64,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "c43246d4e9e506178b69baed075d797ec2d873e2",
-      "url": "https://github.com/nix-community/nix-index-database/archive/c43246d4e9e506178b69baed075d797ec2d873e2.tar.gz",
-      "hash": "sha256-oHVcvP2Ahhj1KUsEzp+2BQF55/r5VSa3QxdPdwE1p00="
+      "revision": "b8eb7acee0f7604fe1bf6a5b3dcf5254369180fa",
+      "url": "https://github.com/nix-community/nix-index-database/archive/b8eb7acee0f7604fe1bf6a5b3dcf5254369180fa.tar.gz",
+      "hash": "sha256-yVJbd07ortDRAttDFmDV5p220aOLTHgVAx//0nW/xW8="
     },
     "nixpkgs": {
       "type": "Channel",

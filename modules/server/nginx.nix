@@ -1,39 +1,13 @@
-{ config, pkgs, ... }:
+{ config, lib', pkgs, self, ... }:
 
-let
-  secret = x: { file = "/etc/nixos/secrets/ovh/${x}.age"; };
-  privateNets = ''
-    allow 100.64.0.0/10;
-    allow 192.168.0.0/16;
-    allow 10.0.0.0/8;
-    allow 172.16.0.0/12;
-    deny all;
-  '';
-
-  mkVHost = { port, extraLocConfig ? "" }: {
-    useACMEHost = "heartblin.eu";
-    forceSSL = true;
-    extraConfig = privateNets;
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString port}";
-      proxyWebsockets = true;
-      extraConfig =
-        extraLocConfig
-        + ''
-          proxy_hide_header Server;
-          proxy_hide_header X-Powered-By;
-          proxy_hide_header X-AspNet-Version;
-        '';
-    };
-  };
-in {
+{
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   age.secrets = {
-    endpoint = secret "endpoint";
-    application-key = secret "application-key";
-    application-secret = secret "application-secret";
-    consumer-key = secret "consumer-key";
+    endpoint.file = "${self}/secrets/ovh/endpoint.age";
+    application-key.file = "${self}/secrets/ovh/application-key.age";
+    application-secret.file = "${self}/secrets/ovh/application-secret.age";
+    consumer-key.file = "${self}/secrets/ovh/consumer-key.age";
   };
 
   services.nginx = {
@@ -61,8 +35,8 @@ in {
     '';
 
     virtualHosts = {
-      "heartblin.eu" = mkVHost { port = 8080; };
-      "movies.heartblin.eu" = mkVHost {
+      "heartblin.eu" = lib'.mkVHost { port = 8080; };
+      "movies.heartblin.eu" = lib'.mkVHost {
         port = 8096;
         extraLocConfig = ''
           proxy_buffering off;
@@ -70,13 +44,13 @@ in {
         '';
       };
 
-      "scrutiny.heartblin.eu" = mkVHost { port = 8067; };
-      "uptime.heartblin.eu" = mkVHost {
+      "scrutiny.heartblin.eu" = lib'.mkVHost { port = 8067; };
+      "uptime.heartblin.eu" = lib'.mkVHost {
         port = 3001;
         extraLocConfig = "proxy_buffering off;";
       };
 
-      "vault.heartblin.eu" = mkVHost { port = 8967; };
+      "vault.heartblin.eu" = lib'.mkVHost { port = 8967; };
       "cloud.heartblin.eu" = {
         useACMEHost = "heartblin.eu";
         forceSSL = true;

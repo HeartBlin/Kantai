@@ -7,7 +7,20 @@ let
     "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
   ];
 in {
-  environment.systemPackages = [ pkgs.chromium ];
+  environment.systemPackages = [
+    (pkgs.chromium.override {
+      commandLineArgs = [
+        "--enable-blink-features=MiddleClickAutoscroll"
+        "--enable-features=${lib.concatStringsSep "," [
+          "AcceleratedVideoEncoder"
+          "AcceleratedVideoDecodeLinuxGL"
+          "AcceleratedVideoDecodeLinuxZeroCopyGL"
+          "VaapiOnNvidiaGPUs"
+        ]}"
+        "--test-type" # Disables the complaint about MiddleClickAutoscroll at start
+      ];
+    })
+  ];
 
   programs.chromium = {
     enable = true;

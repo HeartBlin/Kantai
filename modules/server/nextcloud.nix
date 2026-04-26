@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, self, ... }:
 
 {
   age.secrets.nextcloud = {
-    file = /etc/nixos/secrets/nextcloud.age;
+    file = "${self}/secrets/nextcloud.age";
     owner = "nextcloud";
     group = "nextcloud";
   };

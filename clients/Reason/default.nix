@@ -42,16 +42,10 @@ in
 
     # Other
     { services.fstrim.enable = true; }
-    ({ pkgs, ... }: { boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto; })
+    ({ pkgs, ... }: { boot.kernelPackages = pkgs.linuxPackages_latest; })
     {
       users.users."server".openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEISJfRd1QeAC48Vkd4gNLZj9bPnmXDal2F9rc+3V9oI heartblin@Void"
       ];
     }
-
-    # NVIDIA Tweaks
-    { hardware.nvidia.prime.offload.enable = false; }
-    { hardware.nvidia.prime.offload.enableOffloadCmd = false; }
-    { hardware.nvidia.nvidiaPersistenced = false; }
-    { hardware.nvidia.dynamicBoost.enable = false; }
   ]

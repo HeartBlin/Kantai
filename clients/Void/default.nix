@@ -54,5 +54,5 @@ in
 
     # Other
     { services.fstrim.enable = true; }
-    ({ pkgs, ... }: { boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3; })
+    ({ pkgs, ... }: { boot.kernelPackages = pkgs.linuxPackages_zen; })
   ]

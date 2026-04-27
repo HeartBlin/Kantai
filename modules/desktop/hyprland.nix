@@ -1,4 +1,4 @@
-{ config, pkgs, lib', ... }:
+{ config, pkgs, lib', self', ... }:
 
 {
   hjem.users.${config.nimic.user}.files.".config/hypr/hyprland.conf" = {
@@ -224,7 +224,7 @@
       glib
       gsettings-desktop-schemas
       awww
-      wallpaper-walk
+      self'.packages.wallpaper-walk
     ];
   };
 }

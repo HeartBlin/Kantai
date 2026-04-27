@@ -1,8 +1,8 @@
-{ config, pkgs, self, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   age.secrets.nextcloud = {
-    file = "${self}/secrets/nextcloud.age";
+    file = "${inputs.secrets}/nextcloud.age";
     owner = "nextcloud";
     group = "nextcloud";
   };

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, self', ... }:
 
 let
   settingsJSON = builtins.toJSON {
@@ -145,7 +145,7 @@ in {
   environment.systemPackages = with pkgs; [
     # Nix tools
     nil
-    alejandra-custom
+    self'.packages.alejandra-custom
     deadnix
     statix
     direnv

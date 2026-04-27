@@ -1,4 +1,4 @@
-{ pkgs, sources, ... }:
+{ inputs, pkgs, ... }:
 
 {
   documentation = {
@@ -9,10 +9,21 @@
     nixos.enable = false;
   };
 
+  nixpkgs.config = {
+    allowAliases = false;
+    allowBroken = false;
+    allowUnfree = true;
+    allowUnsupportedSystem = false;
+    nvidia.acceptLicense = true;
+    cudaSupport = true;
+  };
+
   nix = {
     package = pkgs.nixVersions.latest;
     channel.enable = false;
-    registry.nixpkgs.flake = sources.nixpkgs;
+
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     settings = {
       allow-import-from-derivation = false;

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, self', ... }:
 
 {
   users.users.${config.nimic.user}.extraGroups = [ "wireshark" "pcap" ];
@@ -12,6 +12,6 @@
     aircrack-ng
     nmap
     dosbox
-    ltspice
+    self'.packages.ltspice
   ];
 }

@@ -1,10 +1,12 @@
+{ pkgs, self, ... }:
+
 let
-  apps = ../../modules/apps;
-  core = ../../modules/core;
-  hardware = ../../modules/hardware;
-  server = ../../modules/server;
-in
-  import ../../. [
+  apps = "${self}/modules/apps";
+  core = "${self}/modules/core";
+  hardware = "${self}/modules/hardware";
+  server = "${self}/modules/server";
+in {
+  imports = [
     ./disko.nix
 
     # Core
@@ -32,20 +34,19 @@ in
     "${server}/ssh.nix"
     "${server}/uptime.nix"
     "${server}/vaultwarden.nix"
+  ];
 
-    # Custom options
-    { nimic.user = "server"; }
+  # Custom options
+  nimic.user = "server";
 
-    # System ID
-    { networking.hostName = "Reason"; }
-    { system.stateVersion = "26.05"; }
+  # Misc
+  services.fstrim.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  users.users."server".openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEISJfRd1QeAC48Vkd4gNLZj9bPnmXDal2F9rc+3V9oI heartblin@Void"
+  ];
 
-    # Other
-    { services.fstrim.enable = true; }
-    ({ pkgs, ... }: { boot.kernelPackages = pkgs.linuxPackages_latest; })
-    {
-      users.users."server".openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEISJfRd1QeAC48Vkd4gNLZj9bPnmXDal2F9rc+3V9oI heartblin@Void"
-      ];
-    }
-  ]
+  # System ID
+  networking.hostName = "Reason";
+  system.stateVersion = "26.05";
+}

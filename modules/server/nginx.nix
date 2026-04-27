@@ -1,13 +1,13 @@
-{ config, lib', pkgs, self, ... }:
+{ config, inputs, lib', pkgs, ... }:
 
 {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   age.secrets = {
-    endpoint.file = "${self}/secrets/ovh/endpoint.age";
-    application-key.file = "${self}/secrets/ovh/application-key.age";
-    application-secret.file = "${self}/secrets/ovh/application-secret.age";
-    consumer-key.file = "${self}/secrets/ovh/consumer-key.age";
+    endpoint.file = "${inputs.secrets}/ovh/endpoint.age";
+    application-key.file = "${inputs.secrets}/ovh/application-key.age";
+    application-secret.file = "${inputs.secrets}/ovh/application-secret.age";
+    consumer-key.file = "${inputs.secrets}/ovh/consumer-key.age";
   };
 
   services.nginx = {

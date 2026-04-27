@@ -1,10 +1,12 @@
+{ pkgs, self, ... }:
+
 let
-  apps = ../../modules/apps;
-  core = ../../modules/core;
-  desktop = ../../modules/desktop;
-  hardware = ../../modules/hardware;
-in
-  import ../../. [
+  apps = "${self}/modules/apps";
+  core = "${self}/modules/core";
+  desktop = "${self}/modules/desktop";
+  hardware = "${self}/modules/hardware";
+in {
+  imports = [
     ./disko.nix
 
     # Core
@@ -42,17 +44,20 @@ in
     "${hardware}/audio.nix"
     "${hardware}/bluetooth.nix"
     "${hardware}/nvidia.nix"
+  ];
 
-    # Custom options
-    { nimic.user = "heartblin"; }
-    { nimic.email = "26450233-heart.blin@users.noreply.gitlab.com"; }
-    { nimic.name = "HeartBlin"; }
+  # Custom options
+  nimic = {
+    user = "heartblin";
+    email = "26450233-heart.blin@users.noreply.gitlab.com";
+    name = "HeartBlin";
+  };
 
-    # System ID
-    { networking.hostName = "Void"; }
-    { system.stateVersion = "26.05"; }
+  # Other
+  services.fstrim.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
-    # Other
-    { services.fstrim.enable = true; }
-    ({ pkgs, ... }: { boot.kernelPackages = pkgs.linuxPackages_zen; })
-  ]
+  # System ID
+  networking.hostName = "Void";
+  system.stateVersion = "26.05";
+}

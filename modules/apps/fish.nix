@@ -12,11 +12,7 @@
         set -gx TMPDIR /tmp
       '';
 
-      shellAliases = {
-        ls = "${pkgs.eza}/bin/eza -l --icons --git";
-        Reason = "nh os switch --file /etc/nixos/clients/Reason --target-host server@reason --hostname Reason";
-        Void = "nh os switch --file /etc/nixos/clients/Void --hostname Void";
-      };
+      shellAliases.ls = "${pkgs.eza}/bin/eza -l --icons --git";
     };
 
     starship = {

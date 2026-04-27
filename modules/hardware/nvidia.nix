@@ -7,6 +7,7 @@
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.beta;
       open = false;
+      gsp.enable = false;
       nvidiaSettings = false;
       dynamicBoost.enable = true;
       powerManagement = {

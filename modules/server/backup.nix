@@ -1,16 +1,16 @@
-{ config, pkgs, self, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   age.secrets = {
     "restic" = {
-      file = "${self}/secrets/restic.age";
+      file = "${inputs.secrets}/restic.age";
       owner = "root";
       group = "root";
       mode = "0400";
     };
 
     "ovh" = {
-      file = "${self}/secrets/ovh.age";
+      file = "${inputs.secrets}/ovh.age";
       owner = "root";
       group = "root";
       mode = "0400";

@@ -114,6 +114,22 @@ let
       "editor.codeActionsOnSave"."source.fixAll.clangd" = "explicit";
     };
 
+    # Language Server - Lua
+    "Lua.format.enable" = true;
+    "Lua.format.defaultConfig" = {
+      "indent_style" = "space";
+      "indent_size" = "2";
+      "continuation_indent_size" = "2";
+      "max_line_length" = "120";
+      "quote_style" = "double";
+      "call_arg_parentheses" = "Always";
+    };
+
+    "[lua]" = {
+      "editor.defaultFormatter" = "sumneko.lua";
+      "editor.formatOnSave" = true;
+    };
+
     # Language Server - Meson
     "mesonbuild.linting.enabled" = true;
     "mesonbuild.muonPath" = "${pkgs.muon}/bin/muon";
@@ -170,6 +186,9 @@ in {
 
           # C/C++
           llvm-vs-code-extensions.vscode-clangd
+
+          # Lua
+          sumneko.lua
 
           # Build systems
           mesonbuild.mesonbuild

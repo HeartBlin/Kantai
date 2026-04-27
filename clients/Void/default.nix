@@ -33,7 +33,7 @@ in {
     # Desktop
     "${desktop}/fonts.nix"
     "${desktop}/gdm.nix"
-    "${desktop}/hyprland.nix"
+    "${desktop}/hyprland"
     "${desktop}/plymouth.nix"
     "${desktop}/theme.nix"
     "${desktop}/vicinae.nix"

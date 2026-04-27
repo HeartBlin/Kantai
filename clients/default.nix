@@ -8,11 +8,7 @@ in {
     withSystem system ({ inputs', self', ... }:
       lib.nixosSystem {
         inherit system;
-        specialArgs = {
-          inherit inputs inputs' self self';
-          lib' = import "${self}/lib" { inherit (inputs.nixpkgs) lib; };
-        };
-
+        specialArgs = { inherit inputs inputs' self self'; };
         modules = [
           "${self}/clients/${host}"
 

@@ -10,13 +10,14 @@ in {
     ./disko.nix
 
     # Core
-    "${core}/vars.nix"
-    "${core}/user.nix"
-    "${core}/nix.nix"
     "${core}/boot.nix"
-    "${core}/networking.nix"
-    "${core}/zram.nix"
     "${core}/i18n.nix"
+    "${core}/networking.nix"
+    "${core}/nix.nix"
+    "${core}/sudo.nix"
+    "${core}/user.nix"
+    "${core}/vars.nix"
+    "${core}/zram.nix"
 
     # Apps
     "${apps}/fish.nix"

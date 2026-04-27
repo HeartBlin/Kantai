@@ -1,35 +1,10 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs = {
     gamemode = let
-      bin = lib.makeBinPath [ pkgs.coreutils pkgs.hyprland ];
-      start =
-        (pkgs.writeShellScript "gamemodeStart" ''
-          export PATH=$PATH:${bin}
-          export XDG_RUNTIME_DIR=/run/user/$(id -u)
-          export HYPRLAND_INSTANCE_SIGNATURE=$(ls -t ''${XDG_RUNTIME_DIR}/hypr 2>/dev/null | head -n 1)
-
-          hyprctl --batch "\
-            keyword animations:enabled 0;\
-            keyword animation borderangle,0; \
-            keyword decoration:shadow:enabled 0;\
-            keyword decoration:blur:enabled 0;\
-            keyword decoration:fullscreen_opacity 1;\
-            keyword general:gaps_in 0;\
-            keyword general:gaps_out 0;\
-            keyword general:border_size 1;\
-            keyword decoration:rounding 0"
-        '').outPath;
-
-      end =
-        (pkgs.writeShellScript "gamemodeEnd" ''
-          export PATH=$PATH:${bin}
-          export XDG_RUNTIME_DIR=/run/user/$(id -u)
-          export HYPRLAND_INSTANCE_SIGNATURE=$(ls -t ''${XDG_RUNTIME_DIR}/hypr 2>/dev/null | head -n 1)
-
-          hyprctl reload
-        '').outPath;
+      start = (pkgs.writeShellScript "gs" "${pkgs.asusctl}/bin/asusctl profile set Performance").outPath;
+      end = (pkgs.writeShellScript "ge" "${pkgs.asusctl}/bin/asusctl profile set Quiet").outPath;
     in {
       enable = true;
       enableRenice = false;
@@ -42,6 +17,7 @@
     steam = {
       enable = true;
       package = pkgs.steam.override { extraArgs = "-system-composer"; };
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
   };
 

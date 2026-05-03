@@ -2,10 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -51,10 +47,15 @@
     };
   };
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = import inputs.systems;
-      perSystem = import ./packages;
-      imports = [ ./clients ];
-    };
+  outputs = { self, ... } @ inputs: let
+    lib = inputs.nixpkgs.lib;
+    systems = import inputs.systems;
+    forAllSystems = lib.genAttrs systems;
+    p = inputs.nixpkgs.legacyPackages;
+  in {
+    nixosConfigurations = import ./clients { inherit inputs lib self; };
+    packages = forAllSystems (
+      system: import ./packages { inherit (p.${system}) pkgs; }
+    );
+  };
 }

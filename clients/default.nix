@@ -1,17 +1,27 @@
-{ inputs, lib, withSystem, self, ... }:
+{ inputs, lib, self }:
 
 let
-  hosts = [ "Reason" "Void" ];
   system = "x86_64-linux";
-in {
-  flake.nixosConfigurations = lib.genAttrs hosts (host:
-    withSystem system ({ inputs', self', ... }:
+  hosts =
+    builtins.readDir "${self}/clients"
+    |> lib.filterAttrs (_: type: type == "directory")
+    |> builtins.attrNames;
+
+  self'.packages = self.packages.${system} or { };
+  inputs' =
+    inputs
+    |> lib.mapAttrs (_: x: {
+      packages = x.packages.${system} or { };
+    });
+in
+  lib.genAttrs hosts (
+    host:
       lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs inputs' self self'; };
         modules = [
           # Entry point
-          "${self}/clients/${host}"
+          "${self}/clients/${host}/config.nix"
 
           # Modules from inputs
           inputs.agenix.nixosModules.default
@@ -20,5 +30,5 @@ in {
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nix-index-database.nixosModules.default
         ];
-      }));
-}
+      }
+  )

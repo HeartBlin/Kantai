@@ -43,6 +43,7 @@
         "recursive-nix"
         "git-hashing"
         "verified-fetches"
+        "pipe-operators"
       ];
 
       allowed-users = [ "@wheel" ];

@@ -11,7 +11,7 @@ in {
     execWheelOnly = true;
     extraConfig = ''
       Defaults pwfeedback
-      Defaults passprompt = "${blue}>${yellow}>${red}>${reset} passwd: "
+      Defaults passprompt = "${blue}>${yellow}>${red}>${reset} Password: "
     '';
   };
 }

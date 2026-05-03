@@ -58,7 +58,7 @@ let
     # Workbench
     "workbench.colorTheme" = "Dark+";
     "workbench.editor.empty.hint" = "hidden";
-    "workbench.editor.enablePreview" = false;
+    "workbench.editor.enablePreview" = true;
     "workbench.iconTheme" = "material-icon-theme";
     "workbench.layoutControl.enabled" = false;
     "workbench.startupEditor" = "none";

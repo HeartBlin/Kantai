@@ -1,18 +1,20 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   services.xserver.videoDrivers = [ "nvidia" ];
   environment.systemPackages = [ pkgs.btop ];
   hardware = {
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      branch = "legacy_580";
       open = false;
       gsp.enable = false;
       nvidiaSettings = false;
-      dynamicBoost.enable = true;
-      powerManagement = {
-        enable = true;
-        finegrained = true;
+      powerManagement.enable = true;
+
+      moduleParams.nvidia = {
+        NVreg_EnableResizableBar = 1;
+        NVreg_UsePageAttributeTable = 1;
+        NVreg_EnableGpuFirmware = 0;
       };
 
       prime = {
@@ -30,19 +32,5 @@
       enable = true;
       enable32Bit = true;
     };
-  };
-
-  boot = {
-    initrd.kernelModules = [
-      "nvidia"
-      "nvidia_modeset"
-      "nvidia_drm"
-      "nvidia_uvm"
-    ];
-
-    kernelParams = [
-      "nvidia.NVreg_EnableResizableBAR=1"
-      "nvidia.NVreg_UsePageAttributeTable=1"
-    ];
   };
 }

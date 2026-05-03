@@ -10,8 +10,10 @@ in {
         inherit system;
         specialArgs = { inherit inputs inputs' self self'; };
         modules = [
+          # Entry point
           "${self}/clients/${host}"
 
+          # Modules from inputs
           inputs.agenix.nixosModules.default
           inputs.disko.nixosModules.default
           inputs.hjem.nixosModules.default

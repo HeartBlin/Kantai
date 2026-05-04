@@ -56,7 +56,11 @@ in {
 
   # Other
   services.fstrim.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
+    resumeDevice = "/dev/mapper/crypted";
+    kernelParams = [ "resume_offset=533760" ];
+  };
 
   # System ID
   networking.hostName = "Void";

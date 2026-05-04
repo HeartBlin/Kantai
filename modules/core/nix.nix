@@ -75,7 +75,7 @@
     };
   };
 
-  environment.systemPackages = [ pkgs.npins ];
+  environment.defaultPackages = [ ];
   programs.nh = {
     enable = true;
     clean = {

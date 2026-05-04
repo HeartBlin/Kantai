@@ -1,4 +1,4 @@
-{ config, inputs', lib, pkgs, self', ... }:
+{ config, inputs', lib, pkgs, ... }:
 
 {
   hjem.users.${config.nimic.user}.files = {
@@ -9,6 +9,7 @@
     ".config/hypr/_monitors.lua".source = ./_monitors.lua;
     ".config/hypr/_rules.lua".source = ./_rules.lua;
     ".config/hypr/_settings.lua".source = ./_settings.lua;
+    ".config/hypr/_wallpaper.lua".source = ./_wallpaper.lua;
   };
 
   programs = {
@@ -73,7 +74,6 @@
       glib
       gsettings-desktop-schemas
       awww
-      self'.packages.wallpaper-walk
     ];
   };
 }

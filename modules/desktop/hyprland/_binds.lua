@@ -1,3 +1,5 @@
+local wp = require("_wallpaper")
+
 local dsp = hl.dsp
 local exec = dsp.exec_cmd
 local window = dsp.window
@@ -23,8 +25,8 @@ hl.bind("SUPER + Q", window.close())
 hl.bind("SUPER + SHIFT + Q", dsp.exit())
 
 -- Wallpaper
-hl.bind("ALT + E", exec("wallpaper-walk inc"))
-hl.bind("ALT + Q", exec("wallpaper-walk dec"))
+hl.bind("ALT + E", function() wp.walk(1) end)
+hl.bind("ALT + Q", function() wp.walk(-1) end)
 
 -- Focus
 hl.bind("SUPER + G", function()

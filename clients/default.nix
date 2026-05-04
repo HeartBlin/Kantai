@@ -1,6 +1,7 @@
-{ inputs, lib, self }:
+{ inputs, self }:
 
 let
+  lib = inputs.nixpkgs.lib;
   system = "x86_64-linux";
   hosts =
     builtins.readDir "${self}/clients"

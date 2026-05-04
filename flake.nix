@@ -1,4 +1,9 @@
 {
+  outputs = { self, ... } @ inputs: {
+    nixosConfigurations = import ./clients { inherit inputs self; };
+    packages = import ./packages { inherit inputs; };
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
@@ -45,17 +50,5 @@
       url = "git+ssh://git@gitlab.com/heart.blin/nimic-agenix.git";
       flake = false;
     };
-  };
-
-  outputs = { self, ... } @ inputs: let
-    lib = inputs.nixpkgs.lib;
-    systems = import inputs.systems;
-    forAllSystems = lib.genAttrs systems;
-    p = inputs.nixpkgs.legacyPackages;
-  in {
-    nixosConfigurations = import ./clients { inherit inputs lib self; };
-    packages = forAllSystems (
-      system: import ./packages { inherit (p.${system}) pkgs; }
-    );
   };
 }

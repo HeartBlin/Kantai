@@ -35,7 +35,6 @@ in {
     "${desktop}/fonts.nix"
     "${desktop}/gdm.nix"
     "${desktop}/hyprland"
-    "${desktop}/plymouth.nix"
     "${desktop}/theme.nix"
     "${desktop}/vicinae.nix"
 
@@ -57,9 +56,10 @@ in {
   # Other
   services.fstrim.enable = true;
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     resumeDevice = "/dev/mapper/crypted";
-    kernelParams = [ "resume_offset=533760" ];
+    kernelParams = [ "resume_offset=533760" "nowatchdog" ];
+    extraModprobeConfig = "blacklist sp5100_tco"; # shush
   };
 
   # System ID

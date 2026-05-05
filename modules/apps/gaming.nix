@@ -17,30 +17,34 @@
 
     steam = {
       enable = true;
-      package = pkgs.steam.override { extraArgs = "-system-composer"; };
       extraCompatPackages = [ pkgs.proton-ge-bin ];
+      package = pkgs.steam.override {
+        extraArgs = "-system-composer";
+        extraEnv =
+          {
+            PROTON_NO_WM_DECORATION = 1;
+            PROTON_USE_WOW64 = 1;
+          }
+          // lib.optionalAttrs config.hardware.nvidia.enabled {
+            PROTON_ENABLE_NVAPI = 1;
+            __NV_PRIME_RENDER_OFFLOAD = 1;
+            __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
+            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+            __VK_LAYER_NV_optimus = "NVIDIA_only";
+
+            __GL_SYNC_TO_VBLANK = 0;
+            __GL_MaxFrameAllowed = 1;
+            __GL_SHADER_DISK_CACHE = 1;
+            __GL_SHADER_DISK_CACHE_SIZE = 17179869184; # 16GB
+          };
+      };
     };
   };
 
-  environment = {
-    sessionVariables =
-      {
-        "PROTON_NO_WM_DECORATION" = 1;
-        "PROTON_USE_WOW64" = 1;
-      }
-      // lib.optionalAttrs config.hardware.nvidia.enabled {
-        "__GL_SHADER_DISK_CACHE" = 1;
-        "__GL_SHADER_DISK_CACHE_SIZE" = 17179869184; # 16GB
-        "__GL_SHADER_DISK_CACHE_PATH" = "$XDG_CACHE_HOME/nsc";
-        "__GL_SYNC_TO_VBLANK" = 0;
-        "__GL_MaxFramesAllowed" = 1;
-      };
-
-    systemPackages = with pkgs; [
-      protonplus
-      gpu-screen-recorder-gtk
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    protonplus
+    gpu-screen-recorder-gtk
+  ];
 
   # SteamOS kernel tweaks
   boot.kernel.sysctl = {
@@ -59,5 +63,4 @@
 
   # NTSync
   boot.kernelModules = [ "ntsync" ];
-  services.udev.extraRules = ''KERNEL=="ntsync", MODE="0666", TAG+="uaccess"'';
 }

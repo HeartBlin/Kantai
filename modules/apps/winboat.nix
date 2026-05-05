@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   users.users.${config.nimic.user}.extraGroups = [ "libvirtd" "kvm" ];
@@ -24,4 +24,9 @@
     pkgs.podman-tui
     pkgs.podman-compose
   ];
+
+  systemd.services = {
+    libvirtd.wantedBy = lib.mkForce [ ];
+    libvirt-guests.wantedBy = lib.mkForce [ ];
+  };
 }

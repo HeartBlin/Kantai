@@ -15,7 +15,6 @@
     allowUnfree = true;
     allowUnsupportedSystem = false;
     nvidia.acceptLicense = true;
-    cudaSupport = true;
   };
 
   nix = {

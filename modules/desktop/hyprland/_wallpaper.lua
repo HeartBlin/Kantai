@@ -47,7 +47,7 @@ function M.walk(direction)
   local next_idx = (read_index() - 1 + direction) % #wallpapers + 1
   write_index(next_idx)
 
-  os.execute(string.format('awww img "%s" %s', wallpapers[next_idx], AWWW_OPTIONS))
+  os.execute(string.format('awww img "%s" %s &', wallpapers[next_idx], AWWW_OPTIONS))
 end
 
 return M

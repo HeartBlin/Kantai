@@ -1,4 +1,4 @@
-{ config, inputs', lib, pkgs, ... }:
+{ config, inputs', pkgs, ... }:
 
 {
   hjem.users.${config.nimic.user}.files = {
@@ -21,6 +21,7 @@
 
     dconf.enable = true;
     seahorse.enable = true;
+    ssh.enableAskPassword = true;
   };
 
   services = {
@@ -54,26 +55,14 @@
     };
   };
 
-  environment = {
-    sessionVariables = let
-      isNvidia = x: lib.optionalString config.hardware.nvidia.enabled x;
-      isFoot = x: lib.optionalString config.programs.foot.enable x;
-    in {
-      LIBVA_DRIVER_NAME = isNvidia "nvidia";
-      __GLX_VENDOR_LIBRARY_NAME = isNvidia "nvidia";
-      NVD_BACKEND = isNvidia "direct";
-      TERMINAL = isFoot "foot";
-    };
-
-    systemPackages = with pkgs; [
-      libsecret
-      nautilus
-      file-roller
-      hyprshot
-      brightnessctl
-      glib
-      gsettings-desktop-schemas
-      awww
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    libsecret
+    nautilus
+    file-roller
+    hyprshot
+    brightnessctl
+    glib
+    gsettings-desktop-schemas
+    awww
+  ];
 }

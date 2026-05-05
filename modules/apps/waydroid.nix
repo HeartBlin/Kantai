@@ -10,45 +10,48 @@ in {
   };
 
   systemd.services = {
-    waydroid-container.serviceConfig = {
-      Delegate = true;
-      CPUAccounting = true;
-      MemoryAccounting = true;
-      TaskAccounting = true;
-      ExecStartPre = lib.mkAfter [
-        (pkgs.writeShellScript "waydroid-gpu-fix-pre" ''
-          set -e
-          PROP_FILE="/var/lib/waydroid/waydroid.prop"
+    waydroid-container = {
+      wantedBy = lib.mkForce [ ];
+      serviceConfig = {
+        Delegate = true;
+        CPUAccounting = true;
+        MemoryAccounting = true;
+        TaskAccounting = true;
+        ExecStartPre = lib.mkAfter [
+          (pkgs.writeShellScript "waydroid-gpu-fix-pre" ''
+            set -e
+            PROP_FILE="/var/lib/waydroid/waydroid.prop"
 
-          mkdir -p /var/lib/waydroid
-          touch "$PROP_FILE"
-          chown root:root "$PROP_FILE"
-          chmod 644 "$PROP_FILE"
+            mkdir -p /var/lib/waydroid
+            touch "$PROP_FILE"
+            chown root:root "$PROP_FILE"
+            chmod 644 "$PROP_FILE"
 
-          set_prop() {
-            ${pkgs.gnused}/bin/sed -i "/^$1=/d" "$PROP_FILE"
-            echo "$1=$2" >> "$PROP_FILE"
-          }
+            set_prop() {
+              ${pkgs.gnused}/bin/sed -i "/^$1=/d" "$PROP_FILE"
+              echo "$1=$2" >> "$PROP_FILE"
+            }
 
-          set_prop ro.hardware.gralloc gbm
-          set_prop ro.hardware.egl mesa
-          set_prop gralloc.gbm.device ${renderNode}
-          set_prop ro.hardware.vulkan amdgpu
-          set_prop persist.waydroid.width 1920
-          set_prop persist.waydroid.height 1080
-          set_prop persist.waydroid.multi_windows true
+            set_prop ro.hardware.gralloc gbm
+            set_prop ro.hardware.egl mesa
+            set_prop gralloc.gbm.device ${renderNode}
+            set_prop ro.hardware.vulkan amdgpu
+            set_prop persist.waydroid.width 1920
+            set_prop persist.waydroid.height 1080
+            set_prop persist.waydroid.multi_windows true
 
-          # Clean empty lines
-          ${pkgs.gnused}/bin/sed -i '/^$/d' "$PROP_FILE"
-        '')
-      ];
+            # Clean empty lines
+            ${pkgs.gnused}/bin/sed -i '/^$/d' "$PROP_FILE"
+          '')
+        ];
+      };
     };
 
     waydroid-gpu-persistence = {
       description = "Enforce GPU for Waydroid (Post-Start Backup)";
       after = [ "waydroid-container.service" ];
       bindsTo = [ "waydroid-container.service" ];
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "waydroid-container.service" ];
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;

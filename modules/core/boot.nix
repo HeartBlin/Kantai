@@ -1,15 +1,5 @@
 {
   boot = {
-    kernelParams = [
-      "splash"
-      "quiet"
-      "loglevel=3"
-      "systemd.show_status=auto"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-    ];
-
     initrd.systemd.enable = true;
     bootspec.enable = true;
     loader = {

@@ -33,6 +33,7 @@ in {
     "${server}/nginx.nix"
     "${server}/scrutiny.nix"
     "${server}/ssh.nix"
+    "${server}/tlp.nix"
     "${server}/uptime.nix"
     "${server}/vaultwarden.nix"
   ];

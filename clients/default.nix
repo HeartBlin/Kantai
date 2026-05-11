@@ -26,11 +26,11 @@ in
           "${self}/clients/${host}/disko.nix"
 
           # Modules from inputs
-          inputs.agenix.nixosModules.default
           inputs.disko.nixosModules.default
           inputs.hjem.nixosModules.default
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nix-index-database.nixosModules.default
+          inputs.sops-nix.nixosModules.default
         ];
       }
   )

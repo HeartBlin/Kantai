@@ -7,17 +7,17 @@
       commit.gpgSign = true;
       gpg.format = "ssh";
       user = {
-        inherit (config.nimic) email name;
-        signingkey = "/home/${config.nimic.user}/.ssh/gitlab";
+        inherit (config.kantai) email name;
+        signingkey = "/home/${config.kantai.user}/.ssh/GitHubSign";
       };
     };
   };
 
-  hjem.users.${config.nimic.user}.files.".ssh/config".text = ''
-    Host gitlab.com
-      HostName gitlab.com
+  hjem.users.${config.kantai.user}.files.".ssh/config".text = ''
+    Host github.com
+      HostName github.com
       User git
-      IdentityFile /home/${config.nimic.user}/.ssh/gitlab
+      IdentityFile /home/${config.kantai.user}/.ssh/GitHubAuth
       IdentitiesOnly yes
   '';
 }

@@ -45,10 +45,11 @@ in {
   ];
 
   # Custom options
-  nimic = {
+  kantai = rec {
     user = "heartblin";
-    email = "26450233-heart.blin@users.noreply.gitlab.com";
+    email = "161874560+HeartBlin@users.noreply.github.com";
     name = "HeartBlin";
+    flake = "/home/${user}/Projects/Kantai";
   };
 
   # Other

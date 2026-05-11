@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = [ pkgs.vicinae ];
-  hjem.users.${config.nimic.user}.files.".config/vicinae/settings.json" = {
+  hjem.users.${config.kantai.user}.files.".config/vicinae/settings.json" = {
     generator = lib.generators.toJSON { };
     value = {
       "$schema" = "https://vicinae.com/schemas/config.json";

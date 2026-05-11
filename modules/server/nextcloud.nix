@@ -1,12 +1,6 @@
-{ config, inputs, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  age.secrets.nextcloud = {
-    file = "${inputs.secrets}/nextcloud.age";
-    owner = "nextcloud";
-    group = "nextcloud";
-  };
-
   services = {
     nextcloud = {
       enable = true;
@@ -23,7 +17,7 @@
       config = {
         dbtype = "mysql";
         adminuser = "admin";
-        adminpassFile = config.age.secrets.nextcloud.path;
+        adminpassFile = config.sops.secrets."nextcloud_admin_pass".path;
       };
     };
   };

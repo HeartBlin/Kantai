@@ -45,7 +45,7 @@ in {
     };
   };
 
-  hjem.users.${config.nimic.user}.files.".config/chromium/Default/Bookmarks" = {
+  hjem.users.${config.kantai.user}.files.".config/chromium/Default/Bookmarks" = {
     generator = lib.generators.toJSON { };
     value = {
       "version" = 1;
@@ -59,11 +59,6 @@ in {
               "name" = "Selfhosted";
               "type" = "folder";
               "children" = [
-                {
-                  "name" = "Glance";
-                  "url" = "https://heartblin.eu";
-                  "type" = "url";
-                }
                 {
                   "name" = "Jellyfin";
                   "url" = "https://movies.heartblin.eu";
@@ -80,11 +75,6 @@ in {
                   "type" = "url";
                 }
                 {
-                  "name" = "Uptime";
-                  "url" = "https://uptime.heartblin.eu";
-                  "type" = "url";
-                }
-                {
                   "name" = "VaultWarden";
                   "url" = "https://vault.heartblin.eu";
                   "type" = "url";
@@ -97,8 +87,8 @@ in {
               "type" = "url";
             }
             {
-              "name" = "GitLab";
-              "url" = "https://gitlab.com";
+              "name" = "GitHub";
+              "url" = "https://github.com";
               "type" = "url";
             }
             {

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  inherit (config.nimic) user;
+  inherit (config.kantai) user;
   gtkSettings.Settings = {
     gtk-theme-name = "Adwaita-dark";
     gtk-icon-theme-name = "Adwaita";

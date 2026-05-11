@@ -2,7 +2,7 @@
 
 {
   programs.nix-ld.enable = true;
-  users.users.${config.nimic.user}.extraGroups = [ "dialout" ];
+  users.users.${config.kantai.user}.extraGroups = [ "dialout" ];
   environment.systemPackages = with pkgs; [
     dosbox
     self'.packages.ltspice

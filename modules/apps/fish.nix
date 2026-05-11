@@ -2,7 +2,7 @@
 
 {
   environment.variables.TMPDIR = "/tmp";
-  users.users.${config.nimic.user}.shell = pkgs.fish;
+  users.users.${config.kantai.user}.shell = pkgs.fish;
   programs = {
     command-not-found.enable = false;
     fish = {

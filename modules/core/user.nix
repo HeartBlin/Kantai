@@ -1,19 +1,19 @@
 { config, ... }:
 
 {
-  users.users.${config.nimic.user} = {
+  users.users.${config.kantai.user} = {
     isNormalUser = true;
-    description = config.nimic.name;
+    description = config.kantai.name;
     initialPassword = "password";
     extraGroups = [ "networkmanager" "video" "wheel" ];
   };
 
   hjem = {
     clobberByDefault = true;
-    users.${config.nimic.user} = {
-      inherit (config.nimic) user;
+    users.${config.kantai.user} = {
+      inherit (config.kantai) user;
       enable = true;
-      directory = "/home/${config.nimic.user}";
+      directory = "/home/${config.kantai.user}";
     };
   };
 }

@@ -25,19 +25,18 @@ in {
 
     # Server
     "${server}/backup.nix"
-    "${server}/glance.nix"
     "${server}/jellyfin.nix"
     "${server}/nextcloud.nix"
     "${server}/nginx.nix"
     "${server}/scrutiny.nix"
+    "${server}/secrets.nix"
     "${server}/ssh.nix"
     "${server}/tlp.nix"
-    "${server}/uptime.nix"
     "${server}/vaultwarden.nix"
   ];
 
   # Custom options
-  nimic.user = "server";
+  kantai.user = "server";
 
   # Misc
   services.fstrim.enable = true;

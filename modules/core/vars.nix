@@ -1,14 +1,15 @@
 { lib, ... }:
 
 {
-  options.nimic = let
+  options.kantai = let
     mkVar = lib.mkOption {
       type = lib.types.str;
-      default = "unset";
+      default = null;
     };
   in {
     user = mkVar;
     email = mkVar;
     name = mkVar;
+    flake = mkVar;
   };
 }

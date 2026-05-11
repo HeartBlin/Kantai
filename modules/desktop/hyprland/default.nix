@@ -1,7 +1,7 @@
 { config, inputs', pkgs, ... }:
 
 {
-  hjem.users.${config.nimic.user}.files = {
+  hjem.users.${config.kantai.user}.files = {
     ".config/hypr/hyprland.lua".source = ./hyprland.lua;
     ".config/hypr/_autostart.lua".source = ./_autostart.lua;
     ".config/hypr/_binds.lua".source = ./_binds.lua;

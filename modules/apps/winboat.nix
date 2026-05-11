@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  users.users.${config.nimic.user}.extraGroups = [ "libvirtd" "kvm" ];
+  users.users.${config.kantai.user}.extraGroups = [ "libvirtd" "kvm" ];
   virtualisation = {
     containers.enable = true;
     podman = {

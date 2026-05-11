@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   privateNets' = ''
@@ -27,13 +27,6 @@ let
   };
 in {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
-
-  age.secrets = {
-    endpoint.file = "${inputs.secrets}/ovh/endpoint.age";
-    application-key.file = "${inputs.secrets}/ovh/application-key.age";
-    application-secret.file = "${inputs.secrets}/ovh/application-secret.age";
-    consumer-key.file = "${inputs.secrets}/ovh/consumer-key.age";
-  };
 
   services.nginx = {
     enable = true;
@@ -98,10 +91,10 @@ in {
       extraDomainNames = [ "*.heartblin.eu" ];
       dnsProvider = "ovh";
       credentialFiles = {
-        "OVH_ENDPOINT_FILE" = config.age.secrets.endpoint.path;
-        "OVH_APPLICATION_KEY_FILE" = config.age.secrets.application-key.path;
-        "OVH_APPLICATION_SECRET_FILE" = config.age.secrets.application-secret.path;
-        "OVH_CONSUMER_KEY_FILE" = config.age.secrets.consumer-key.path;
+        "OVH_APPLICATION_KEY_FILE" = config.sops.secrets."ovh/app_key".path;
+        "OVH_APPLICATION_SECRET_FILE" = config.sops.secrets."ovh/app_secret".path;
+        "OVH_CONSUMER_KEY_FILE" = config.sops.secrets."ovh/consumer_key".path;
+        "OVH_ENDPOINT_FILE" = config.sops.secrets."ovh/endpoint".path;
       };
     };
   };

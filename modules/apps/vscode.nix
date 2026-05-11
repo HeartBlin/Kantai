@@ -141,7 +141,7 @@ let
   };
 in {
   fonts.packages = [ pkgs.googlesans-code ];
-  hjem.users.${config.nimic.user}.files = {
+  hjem.users.${config.kantai.user}.files = {
     ".vscode/argv.json".text = argvJSON;
     ".config/Code/User/settings.json".text = settingsJSON;
     ".config/Code/User/keybindings.json".text = keybindJSON;

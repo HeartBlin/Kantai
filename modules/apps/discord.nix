@@ -27,7 +27,7 @@ in {
     (pkgs.vesktop.override { withSystemVencord = true; })
   ];
 
-  hjem.users.${config.nimic.user}.files = {
+  hjem.users.${config.kantai.user}.files = {
     ".config/vesktop/settings.json" = {
       generator = lib.generators.toJSON { };
       value = vesktopSettings;

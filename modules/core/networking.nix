@@ -1,4 +1,4 @@
-{ lib, ... }:
+_:
 
 {
   networking = {
@@ -33,10 +33,5 @@
         ];
       };
     };
-  };
-
-  systemd.services = {
-    NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
-    tailscaled.after = [ "multi-user.target" ];
   };
 }

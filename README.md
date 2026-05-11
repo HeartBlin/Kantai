@@ -1,6 +1,6 @@
-<h1 style="text-align: center;"> Kantai </h1>
+<h1 align="center"> Kantai </h1>
 
-<h5 style="text-align: center;"> Perpetually beta btw </h5>
+<h5 align="center"> Perpetually beta btw </h5>
 
 <h2> People </h2>
 

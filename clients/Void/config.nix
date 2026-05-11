@@ -7,8 +7,6 @@ let
   hardware = "${self}/modules/hardware";
 in {
   imports = [
-    ./disko.nix
-
     # Core
     "${core}/boot.nix"
     "${core}/i18n.nix"

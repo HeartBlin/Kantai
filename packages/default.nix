@@ -1,4 +1,4 @@
-{ inputs }:
+inputs:
 
 inputs.nixpkgs.lib.genAttrs (import inputs.systems) (
   system: let

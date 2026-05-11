@@ -1,11 +1,11 @@
 {
   outputs = { self, ... } @ inputs: {
     nixosConfigurations = import ./clients { inherit inputs self; };
-    packages = import ./packages { inherit inputs; };
+    packages = import ./packages inputs;
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     systems.url = "github:nix-systems/x86_64-linux";
 
     agenix = {
@@ -31,10 +31,10 @@
       };
     };
 
-    hyprland.url = "github:hyprwm/hyprland";
+    hyprland.url = "github:hyprwm/hyprland/v0.55.0";
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      url = "github:nix-community/lanzaboote";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         pre-commit.follows = "";

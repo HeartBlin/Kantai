@@ -92,26 +92,15 @@ let
     };
 
     # Language Server - C/C++
-    "clangd.path" = "${pkgs.clang-tools}/bin/clangd";
-    "clangd.arguments" = [
-      "--background-index"
-      "--clang-tidy"
-      "--header-insertion=iwyu"
-      "--completion-style=detailed"
-      "--function-arg-placeholders"
-      "--fallback-style=Google"
-    ];
-
+    "C_Cpp.clang_format_fallbackStyle" = "Google";
     "[c]" = {
-      "editor.defaultFormatter" = "llvm-vs-code-extensions.vscode-clangd";
+      "editor.defaultFormatter" = "ms-vscode.cpptools";
       "editor.formatOnSave" = true;
-      "editor.codeActionsOnSave"."source.fixAll.clangd" = "explicit";
     };
 
     "[cpp]" = {
-      "editor.defaultFormatter" = "llvm-vs-code-extensions.vscode-clangd";
+      "editor.defaultFormatter" = "ms-vscode.cpptools";
       "editor.formatOnSave" = true;
-      "editor.codeActionsOnSave"."source.fixAll.clangd" = "explicit";
     };
 
     # Language Server - Lua
@@ -168,8 +157,11 @@ in {
 
     # C/C++ tools
     clang
-    clang-tools
     ninja
+
+    # Embedded tools
+    platformio
+    python3
 
     # Build systems
     meson
@@ -185,8 +177,8 @@ in {
           mkhl.direnv
 
           # C/C++
-          llvm-vs-code-extensions.vscode-clangd
-
+          ms-vscode.cpptools
+          platformio.platformio-vscode-ide
           # Lua
           sumneko.lua
 

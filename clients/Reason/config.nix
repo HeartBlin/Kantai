@@ -7,8 +7,6 @@ let
   server = "${self}/modules/server";
 in {
   imports = [
-    ./disko.nix
-
     # Core
     "${core}/boot.nix"
     "${core}/i18n.nix"

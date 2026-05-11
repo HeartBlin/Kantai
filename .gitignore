@@ -5,5 +5,3 @@ result/
 .direnv/
 .envrc
 .vscode/
-
-secrets/

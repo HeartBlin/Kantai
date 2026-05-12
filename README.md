@@ -1,6 +1,12 @@
 <h1 align="center"> Kantai </h1>
-
 <h5 align="center"> Perpetually beta btw </h5>
+
+<div align="center">
+
+[![Check flake](https://github.com/HeartBlin/Kantai/actions/workflows/checks.yaml/badge.svg)](https://github.com/HeartBlin/Kantai/actions/workflows/checks.yaml)
+[![License: MIT](https://img.shields.io/github/license/HeartBlin/Kantai?logo=github&label=License&color=%234c1)](./LICENSE)
+
+</div>
 
 <h2> About </h2>
 

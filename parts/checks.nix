@@ -19,5 +19,10 @@ inputs.nixpkgs.lib.genAttrs (import inputs.systems) (
       ${getExe pkgs.statix} check ${self}
       touch $out
     '';
+
+    yamllint = pkgs.runCommand "check-yamllint" { } ''
+      ${getExe pkgs.yamllint} -c ${self}/.yamllint ${self}
+      touch $out
+    '';
   }
 )

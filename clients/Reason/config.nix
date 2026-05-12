@@ -36,7 +36,10 @@ in {
   ];
 
   # Custom options
-  kantai.user = "server";
+  kantai = {
+    user = "server";
+    name = "Reason";
+  };
 
   # Misc
   services.fstrim.enable = true;

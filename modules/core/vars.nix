@@ -3,7 +3,7 @@
 {
   options.kantai = let
     mkVar = lib.mkOption {
-      type = lib.types.str;
+      type = lib.types.nullOr lib.types.str;
       default = null;
     };
   in {

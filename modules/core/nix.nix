@@ -70,7 +70,7 @@
   environment.defaultPackages = [ ];
   programs.nh = {
     enable = true;
-    inherit (config.kantai) flake;
+    flake = config.kantai.flake;
     clean = {
       enable = true;
       dates = "weekly";

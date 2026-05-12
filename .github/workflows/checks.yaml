@@ -1,6 +1,13 @@
 name: Check flake
 
-on: [ push, pull_request, workflow_dispatch ]
+on:
+  push:
+    paths:
+      - '**/*.nix'
+  pull_request:
+    paths:
+      - '**/*.nix'
+  workflow_dispatch:
 
 jobs:
   check:

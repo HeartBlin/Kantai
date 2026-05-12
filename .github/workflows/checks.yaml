@@ -4,7 +4,7 @@ on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
   check:
-    name: Lint (statix, deadnix, alejandra-custom) and check flake
+    name: Lint and check flake
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6

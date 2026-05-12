@@ -5,6 +5,9 @@ let
     # Bread.
     "breadcrumbs.icons" = false;
 
+    # Chat - I like it autocorrecting... in the best case
+    "chat.disableAIFeatures" = false;
+
     # Editor - behavioural
     "editor.accessibilitySupport" = "off";
     "editor.guides.bracketPairs" = true;
@@ -56,7 +59,7 @@ let
     "window.titleBarStyle" = "native";
 
     # Workbench
-    "workbench.colorTheme" = "Dark+";
+    "workbench.colorTheme" = "Default Dark+";
     "workbench.editor.empty.hint" = "hidden";
     "workbench.editor.enablePreview" = true;
     "workbench.iconTheme" = "material-icon-theme";
@@ -139,18 +142,19 @@ let
     "enable-crash-reporter" = false;
     "crash-reporter-id" = "00000000-0000-0000-0000-000000000000";
     "password-store" = "gnome-libsecret";
+    "enable-proposed-api" = [ "github.copilot-chat" ];
   };
 in {
   fonts.packages = [ pkgs.googlesans-code ];
   hjem.users.${config.kantai.user}.files = {
-    ".vscode/argv.json".text = argvJSON;
-    ".config/Code/User/settings.json".text = settingsJSON;
-    ".config/Code/User/keybindings.json".text = keybindJSON;
+    ".vscode-oss/argv.json".text = argvJSON;
+    ".config/VSCodium/User/settings.json".text = settingsJSON;
+    ".config/VSCodium/User/keybindings.json".text = keybindJSON;
   };
 
   environment.systemPackages = with pkgs; [
     (vscode-with-extensions.override {
-      inherit vscode;
+      vscode = vscodium;
       vscodeExtensions = with pkgs.vscode-extensions;
         [
           # Nix
@@ -178,8 +182,8 @@ in {
           {
             name = "copilot-chat";
             publisher = "github";
-            version = "0.45.1";
-            sha256 = "sha256-xxJ+h0/XyT8otXUzIYW9/KMxKLk5zoEE/fiqj4SZK+A=";
+            version = "0.40.0";
+            sha256 = "sha256-7iFLGF9lVNZDXnrJjoXdYz7gA6YDLciwZf4/lF8sYu4=";
           }
         ];
     })

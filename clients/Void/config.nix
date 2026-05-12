@@ -25,7 +25,7 @@ in {
     "${apps}/gaming.nix"
     "${apps}/git.nix"
     "${apps}/uni.nix"
-    "${apps}/vscode.nix"
+    "${apps}/vscodium.nix"
     "${apps}/waydroid.nix"
     "${apps}/winboat.nix"
 

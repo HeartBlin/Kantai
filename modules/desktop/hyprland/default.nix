@@ -1,4 +1,4 @@
-{ config, inputs', pkgs, ... }:
+{ config, inputs, pkgs, system, ... }:
 
 {
   hjem.users.${config.kantai.user}.files = {
@@ -15,8 +15,8 @@
   programs = {
     hyprland = {
       enable = true;
-      package = inputs'.hyprland.packages.hyprland;
-      portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
+      package = inputs.hyprland.packages.${system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
     };
 
     dconf.enable = true;

@@ -1,7 +1,11 @@
 {
   outputs = { self, ... } @ inputs: {
-    nixosConfigurations = import ./clients { inherit inputs self; };
-    packages = import ./packages inputs;
+    checks =
+      import ./parts/checks.nix { inherit inputs self; };
+    nixosConfigurations =
+      import ./parts/clients.nix { inherit inputs self; };
+    packages =
+      import ./parts/packages.nix { inherit inputs; };
   };
 
   inputs = {

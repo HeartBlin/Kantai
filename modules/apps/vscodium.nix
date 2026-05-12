@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self', ... }:
+{ config, lib, pkgs, self, system, ... }:
 
 let
   settingsJSON = builtins.toJSON {
@@ -84,7 +84,7 @@ let
     # Language Server - Nix
     "nix.enableLanguageServer" = true;
     "nix.serverPath" = "${lib.getExe pkgs.nil}";
-    "nix.serverSettings"."nil"."formatting"."command" = [ "${lib.getExe self'.packages.alejandra-custom}" ];
+    "nix.serverSettings"."nil"."formatting"."command" = [ "${lib.getExe self.packages.${system}.alejandra-custom}" ];
     "nix.hiddenLanguageServerErrors" = [
       "textDocument/documentSymbol"
       "textDocument/formatting"

@@ -1,25 +1,18 @@
 { inputs, self }:
 
 let
-  inherit (inputs.nixpkgs.lib) filterAttrs genAttrs mapAttrs nixosSystem;
+  inherit (inputs.nixpkgs.lib) filterAttrs genAttrs nixosSystem;
   system = "x86_64-linux";
   hosts =
     builtins.readDir "${self}/clients"
     |> filterAttrs (_: type: type == "directory")
     |> builtins.attrNames;
-
-  self'.packages = self.packages.${system} or { };
-  inputs' =
-    inputs
-    |> mapAttrs (_: x: {
-      packages = x.packages.${system} or { };
-    });
 in
   genAttrs hosts (
     host:
       nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs inputs' self self'; };
+        specialArgs = { inherit inputs self system; };
         modules = [
           # Entry point
           "${self}/clients/${host}/config.nix"

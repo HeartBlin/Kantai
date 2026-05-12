@@ -4,10 +4,10 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   environment.systemPackages = [ pkgs.btop ];
   hardware = {
-    nvidia = {
-      branch = "legacy_580";
-      open = false;
-      gsp.enable = false;
+    nvidia = rec {
+      branch = "bleeding_edge";
+      open = true;
+      gsp.enable = open;
       nvidiaSettings = false;
       powerManagement.enable = true;
 

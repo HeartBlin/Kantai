@@ -1,4 +1,4 @@
-{ config, pkgs, self', ... }:
+{ config, lib, pkgs, self', ... }:
 
 let
   settingsJSON = builtins.toJSON {
@@ -74,13 +74,14 @@ let
 
     # Extensions
     "direnv.restart.automatic" = true;
+    "direnv.path.executable" = "${lib.getExe pkgs.direnv}";
     "errorLens.gutterIconsEnabled" = true;
     "errorLens.messageBackgroundMode" = "message";
 
     # Language Server - Nix
     "nix.enableLanguageServer" = true;
-    "nix.serverPath" = "nil";
-    "nix.serverSettings"."nil"."formatting"."command" = [ "alejandra" ];
+    "nix.serverPath" = "${lib.getExe pkgs.nil}";
+    "nix.serverSettings"."nil"."formatting"."command" = [ "${lib.getExe self'.packages.alejandra-custom}" ];
     "nix.hiddenLanguageServerErrors" = [
       "textDocument/documentSymbol"
       "textDocument/formatting"
@@ -148,26 +149,6 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    # Nix tools
-    nil
-    self'.packages.alejandra-custom
-    deadnix
-    statix
-    direnv
-
-    # C/C++ tools
-    clang
-    ninja
-
-    # Embedded tools
-    platformio
-    python3
-
-    # Build systems
-    meson
-    muon
-
-    # Extensions
     (vscode-with-extensions.override {
       inherit vscode;
       vscodeExtensions = with pkgs.vscode-extensions;
@@ -179,6 +160,7 @@ in {
           # C/C++
           ms-vscode.cpptools
           platformio.platformio-vscode-ide
+
           # Lua
           sumneko.lua
 
@@ -190,15 +172,14 @@ in {
           usernamehw.errorlens
 
           # Origin
-          gitlab.gitlab-workflow
           github.vscode-pull-request-github
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
             name = "copilot-chat";
             publisher = "github";
-            version = "0.43.0";
-            sha256 = "sha256-iKDRDqQ8qJe2c4SQJBiJLCEtmVmcci6753+I7uH7YVk=";
+            version = "0.45.1";
+            sha256 = "sha256-xxJ+h0/XyT8otXUzIYW9/KMxKLk5zoEE/fiqj4SZK+A=";
           }
         ];
     })

@@ -5,20 +5,23 @@ inputs.nixpkgs.lib.genAttrs (import inputs.systems) (
     inherit (inputs.nixpkgs.lib) generators getExe;
     inherit (inputs.nixpkgs.legacyPackages.${system}) pkgs;
 
-    yamllintConfig =
-      builtins.toFile "yamllint.yaml"
-      (generators.toYAML { } {
-        extends = "default";
-        ignore = [ "**/*sops*" "**/*secrets*" ];
-        rules = {
-          brackets = {
-            min-spaces-inside = 0;
-            max-spaces-inside = 1;
-          };
-          document-start = "disable";
-          truthy.allowed-values = [ "true" "false" "on" ];
+    yamllint = {
+      extends = "default";
+      ignore = [ "**/*sops*" "**/*secrets*" ];
+      rules = {
+        brackets = {
+          min-spaces-inside = 0;
+          max-spaces-inside = 1;
         };
-      });
+        document-start = "disable";
+        truthy.allowed-values = [ "true" "false" "on" ];
+      };
+    };
+
+    yamllintConfig =
+      yamllint
+      |> generators.toYAML { }
+      |> builtins.toFile "yamllint.yaml";
   in {
     alejandra = pkgs.runCommand "check-alejandra" { } ''
       ${getExe self.packages.${system}.alejandra-custom} --check ${self}

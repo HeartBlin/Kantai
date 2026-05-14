@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, system, ... }:
+{ config, pkgs, ... }:
 
 {
   hjem.users.${config.kantai.user}.files = {
@@ -13,12 +13,7 @@
   };
 
   programs = {
-    hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-    };
-
+    hyprland.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     ssh.enableAskPassword = true;

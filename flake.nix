@@ -25,8 +25,6 @@
       };
     };
 
-    hyprland.url = "github:hyprwm/hyprland/v0.55.0";
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs = {

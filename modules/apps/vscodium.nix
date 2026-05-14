@@ -5,9 +5,6 @@ let
     # Bread.
     "breadcrumbs.icons" = false;
 
-    # Chat - I like it autocorrecting... in the best case
-    "chat.disableAIFeatures" = false;
-
     # Editor - behavioural
     "editor.accessibilitySupport" = "off";
     "editor.guides.bracketPairs" = true;
@@ -96,30 +93,21 @@ let
     };
 
     # Language Server - C/C++
-    "C_Cpp.clang_format_fallbackStyle" = "Google";
+    "clangd.path" = "${lib.getExe' pkgs.clang-tools "clangd"}";
+    "clangd.arguments" = [
+      "--background-index"
+      "--clang-tidy"
+      "--header-insertion=never"
+      "--compile-commands-dir=build"
+    ];
+
     "[c]" = {
-      "editor.defaultFormatter" = "ms-vscode.cpptools";
+      "editor.defaultFormatter" = "llvm-vs-code-extensions.vscode-clangd";
       "editor.formatOnSave" = true;
     };
 
     "[cpp]" = {
-      "editor.defaultFormatter" = "ms-vscode.cpptools";
-      "editor.formatOnSave" = true;
-    };
-
-    # Language Server - Lua
-    "Lua.format.enable" = true;
-    "Lua.format.defaultConfig" = {
-      "indent_style" = "space";
-      "indent_size" = "2";
-      "continuation_indent_size" = "2";
-      "max_line_length" = "120";
-      "quote_style" = "double";
-      "call_arg_parentheses" = "Always";
-    };
-
-    "[lua]" = {
-      "editor.defaultFormatter" = "sumneko.lua";
+      "editor.defaultFormatter" = "llvm-vs-code-extensions.vscode-clangd";
       "editor.formatOnSave" = true;
     };
 
@@ -142,7 +130,6 @@ let
     "enable-crash-reporter" = false;
     "crash-reporter-id" = "00000000-0000-0000-0000-000000000000";
     "password-store" = "gnome-libsecret";
-    "enable-proposed-api" = [ "github.copilot-chat" ];
   };
 in {
   fonts.packages = [ pkgs.googlesans-code ];
@@ -153,39 +140,29 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    clang
+    direnv
     (vscode-with-extensions.override {
       vscode = vscodium;
-      vscodeExtensions = with pkgs.vscode-extensions;
-        [
-          # Nix
-          jnoortheen.nix-ide
-          mkhl.direnv
+      vscodeExtensions = with pkgs.vscode-extensions; [
+        # Nix
+        jnoortheen.nix-ide
+        mkhl.direnv
 
-          # C/C++
-          ms-vscode.cpptools
-          platformio.platformio-vscode-ide
+        # C/C++
+        llvm-vs-code-extensions.vscode-clangd
 
-          # Lua
-          sumneko.lua
+        # Build systems
+        mesonbuild.mesonbuild
+        ms-vscode.cmake-tools
 
-          # Build systems
-          mesonbuild.mesonbuild
+        # UI / UX
+        pkief.material-icon-theme
+        usernamehw.errorlens
 
-          # UI / UX
-          pkief.material-icon-theme
-          usernamehw.errorlens
-
-          # Origin
-          github.vscode-pull-request-github
-        ]
-        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "copilot-chat";
-            publisher = "github";
-            version = "0.40.0";
-            sha256 = "sha256-7iFLGF9lVNZDXnrJjoXdYz7gA6YDLciwZf4/lF8sYu4=";
-          }
-        ];
+        # Origin
+        github.vscode-pull-request-github
+      ];
     })
   ];
 }

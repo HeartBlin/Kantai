@@ -51,8 +51,9 @@ let
     };
 
     # Window
+    "window.commandCenter" = false;
     "window.dialogStyle" = "custom";
-    "window.menuBarVisibility" = "toggle";
+    "window.menuBarVisibility" = "hidden";
     "window.titleBarStyle" = "native";
 
     # Workbench
@@ -63,6 +64,7 @@ let
     "workbench.layoutControl.enabled" = false;
     "workbench.startupEditor" = "none";
     "workbench.tree.indent" = 16;
+    "workbench.sideBar.location" = "right";
     "workbench.tree.renderIndentGuides" = "none";
 
     # Telemetry
@@ -77,6 +79,11 @@ let
     "direnv.path.executable" = "${lib.getExe pkgs.direnv}";
     "errorLens.gutterIconsEnabled" = true;
     "errorLens.messageBackgroundMode" = "message";
+
+    # Git
+    "git.autofetch" = true;
+    "git.confirmSync" = true;
+    "diffEditor.ignoreTrimWhitespace" = false;
 
     # Language Server - Nix
     "nix.enableLanguageServer" = true;

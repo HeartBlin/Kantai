@@ -12,6 +12,7 @@ in {
     "${core}/i18n.nix"
     "${core}/networking.nix"
     "${core}/nix.nix"
+    "${core}/security.nix"
     "${core}/sudo.nix"
     "${core}/user.nix"
     "${core}/vars.nix"

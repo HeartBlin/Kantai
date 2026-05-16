@@ -53,7 +53,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: Auto-bump dwproton to ${{ steps.update.outputs.new_ver }}"
-          title: "Update DW-Prton to ${{ steps.update.outputs.new_ver }}"
+          title: "Update DW-Proton to ${{ steps.update.outputs.new_ver }}"
           body: |
             Automated update.
 

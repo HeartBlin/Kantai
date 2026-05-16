@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, system, ... }:
 
 {
   programs = {
@@ -17,7 +17,11 @@
 
     steam = {
       enable = true;
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+        self.packages.${system}.dwproton-bin
+      ];
+
       package = pkgs.steam.override {
         extraArgs = "-system-composer";
         extraEnv =

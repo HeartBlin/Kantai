@@ -1,0 +1,63 @@
+name: Update DW-Proton
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Thats 03:00 EEST / 02:00 EET
+  workflow_dispatch:
+
+jobs:
+  update-package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            experimental-features = nix-command flakes pipe-operators
+      - name: Check for updates and patch /dwproton-bin/default.nix
+        id: update
+        run: |
+          URL="https://dawn.wine/api/v1/repos/dawn-winery/dwproton/releases/latest"
+          LATEST=$(curl -s $URL | jq -r '.tag_name')
+
+          NEW_VER=$LATEST
+          CURRENT_VER=$(grep -oP 'version = "\K[^"]+' packages/dwproton-bin/default.nix)
+
+          if [ "$NEW_VER" == "$CURRENT_VER" ]; then
+            echo "Already up to date."
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Updating to $NEW_VER"
+
+          DOWNLOAD_URL="https://dawn.wine/dawn-winery/dwproton/releases/download/${NEW_VER}/${NEW_VER}-x86_64.tar.xz"
+
+          # If I dont redirect stderr, I get a "path is ..." thing
+          HASH=$(nix-prefetch-url --unpack $DOWNLOAD_URL 2>/dev/null)
+          SHA=$(nix hash convert --hash-algo sha256 $HASH)
+
+          sed -i "s/version = \"$CURRENT_VER\"/version = \"$NEW_VER\"/" packages/dwproton-bin/default.nix
+          sed -i -E "s|hash = \"sha256-[A-Za-z0-9+/=]+\";|hash = \"$SHA\";|" packages/dwproton-bin/default.nix
+
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "new_ver=$NEW_VER" >> $GITHUB_OUTPUT
+
+      - name: Do pull request
+        if: steps.update.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: Auto-bump dwproton to ${{ steps.update.outputs.new_ver }}"
+          title: "Update DW-Prton to ${{ steps.update.outputs.new_ver }}"
+          body: |
+            Automated update.
+
+            **New Version:** `${{ steps.update.outputs.new_ver }}`
+
+          branch: "update/${{ steps.update.outputs.new_ver }}"
+          delete-branch: true

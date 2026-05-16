@@ -2,7 +2,7 @@ name: Update DW-Proton
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Thats 03:00 EEST / 02:00 EET
+    - cron: '0 0 * * *'  # Thats 03:00 EEST / 02:00 EET
   workflow_dispatch:
 
 jobs:

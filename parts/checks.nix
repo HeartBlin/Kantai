@@ -14,6 +14,7 @@ inputs.nixpkgs.lib.genAttrs (import inputs.systems) (
           max-spaces-inside = 1;
         };
         document-start = "disable";
+        line-length.max = 120;
         truthy.allowed-values = [ "true" "false" "on" ];
       };
     };

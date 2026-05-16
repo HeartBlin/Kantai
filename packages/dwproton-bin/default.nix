@@ -43,15 +43,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
         (This is intended for use in the `programs.steam.extraCompatPackages` option only.)
       '';
       homepage = "https://dawn.wine/dawn-winery/dwproton";
-      license = with lib.licenses; [
-        bsd3
-        mpl20
-        lgpl21Plus
-        mit
-        zlib
-        unfreeRedistributable # Valve Proton I think is this?
-      ];
-
       platforms = [ "x86_64-linux" ];
       maintainers = [ ];
       sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];

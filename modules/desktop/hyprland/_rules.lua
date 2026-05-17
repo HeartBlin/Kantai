@@ -6,3 +6,5 @@ hl.window_rule({ name = "waydroid-fs", match = { class = "Waydroid" }, fullscree
 hl.layer_rule({ name = "vicinae-blur", match = { namespace = "vicinae" }, blur = true })
 hl.layer_rule({ name = "vicinae-alpha", match = { namespace = "vicinae" }, ignore_alpha = 0 })
 hl.layer_rule({ name = "vicinae-anim", match = { namespace = "vicinae" }, no_anim = true })
+
+hl.layer_rule({ name = "workspace", match = { namespace = "kantai-workspaces"}, animation = "slide top" })

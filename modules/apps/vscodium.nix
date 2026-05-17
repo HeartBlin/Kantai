@@ -123,6 +123,9 @@ let
     "mesonbuild.muonPath" = "${pkgs.muon}/bin/muon";
     "mesonbuild.mesonPath" = "${pkgs.meson}/bin/meson";
     "[meson]"."editor.formatOnSave" = true;
+
+    # Language Server - QML
+    "qt-qml.qmlls.useQmlImportPathEnvVar" = true;
   };
 
   keybindJSON = builtins.toJSON [
@@ -148,28 +151,44 @@ in {
 
   environment.systemPackages = with pkgs; [
     clang
+    kdePackages.qtdeclarative
     direnv
     (vscode-with-extensions.override {
       vscode = vscodium;
-      vscodeExtensions = with pkgs.vscode-extensions; [
-        # Nix
-        jnoortheen.nix-ide
-        mkhl.direnv
+      vscodeExtensions = with pkgs.vscode-extensions;
+        [
+          # Nix
+          jnoortheen.nix-ide
+          mkhl.direnv
 
-        # C/C++
-        llvm-vs-code-extensions.vscode-clangd
+          # C/C++
+          llvm-vs-code-extensions.vscode-clangd
 
-        # Build systems
-        mesonbuild.mesonbuild
-        ms-vscode.cmake-tools
+          # Build systems
+          mesonbuild.mesonbuild
+          ms-vscode.cmake-tools
 
-        # UI / UX
-        pkief.material-icon-theme
-        usernamehw.errorlens
+          # UI / UX
+          pkief.material-icon-theme
+          usernamehw.errorlens
 
-        # Origin
-        github.vscode-pull-request-github
-      ];
+          # Origin
+          github.vscode-pull-request-github
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "qt-qml";
+            publisher = "TheQtCompany";
+            version = "1.13.0";
+            sha256 = "sha256-WPzierXLQM+HdVb0XAx80f4Fdd34Vf7WbFzFapr5VHE=";
+          }
+          {
+            name = "qt-core";
+            publisher = "TheQtCompany";
+            version = "1.13.0";
+            sha256 = "sha256-/SAoJmKfOfLtbYn4jvtbAFIa6O7kDouv0xQVhnxFOKM=";
+          }
+        ];
     })
   ];
 }

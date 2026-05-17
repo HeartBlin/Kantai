@@ -1,4 +1,4 @@
-{ pkgs, self, ... }:
+{ config, pkgs, self, ... }:
 
 let
   apps = "${self}/modules/apps";
@@ -32,8 +32,8 @@ in {
 
     # Desktop
     "${desktop}/fonts.nix"
-    "${desktop}/gdm.nix"
     "${desktop}/hyprland"
+    "${desktop}/quickshell"
     "${desktop}/theme.nix"
     "${desktop}/vicinae.nix"
 
@@ -60,6 +60,14 @@ in {
     resumeDevice = "/dev/mapper/crypted";
     kernelParams = [ "resume_offset=533760" "nowatchdog" ];
     extraModprobeConfig = "blacklist sp5100_tco"; # shush
+  };
+
+  systemd.services."getty@tty1" = {
+    overrideStrategy = "asDropin";
+    serviceConfig.ExecStart = [
+      ""
+      "${pkgs.util-linux}/bin/agetty -n -o '-p -- ${config.kantai.user}' --noclear %I $TERM"
+    ];
   };
 
   # System ID

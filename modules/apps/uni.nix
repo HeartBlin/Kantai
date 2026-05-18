@@ -1,10 +1,14 @@
 { config, pkgs, self, system, ... }:
 
 {
-  programs.nix-ld.enable = true;
-  users.users.${config.kantai.user}.extraGroups = [ "dialout" ];
+  users.users.${config.kantai.user}.extraGroups = [ "dialout" "libvirtd" ];
   environment.systemPackages = with pkgs; [
-    dosbox
     self.packages.${system}.ltspice
+    virtiofsd
   ];
+
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+  };
 }

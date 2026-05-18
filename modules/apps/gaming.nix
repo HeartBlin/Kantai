@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, system, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs = {
@@ -19,7 +19,7 @@
       enable = true;
       extraCompatPackages = [
         pkgs.proton-ge-bin
-        self.packages.${system}.dwproton-bin
+        pkgs.dwproton-bin
       ];
 
       package = pkgs.steam.override {

@@ -12,12 +12,4 @@
       };
     };
   };
-
-  hjem.users.${config.kantai.user}.files.".ssh/config".text = ''
-    Host github.com
-      HostName github.com
-      User git
-      IdentityFile /home/${config.kantai.user}/.ssh/GitHubAuth
-      IdentitiesOnly yes
-  '';
 }

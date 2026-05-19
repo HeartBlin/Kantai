@@ -31,6 +31,7 @@
       auto-optimise-store = true;
       builders-use-substitutes = true;
       max-jobs = "auto";
+      cores = 0;
       sandbox = true;
       sandbox-fallback = false;
       use-cgroups = true;

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   environment.variables.TMPDIR = "/tmp";
@@ -7,17 +7,10 @@
     command-not-found.enable = false;
     fish = {
       enable = true;
-      interactiveShellInit =
-        ''
-          set fish_greeting
-          set -gx TMPDIR /tmp
-        ''
-        + (lib.optionalString config.programs.hyprland.enable ''
-          if status is-login
-            and test (tty) = "/dev/tty1"
-            start-hyprland
-          end
-        '');
+      interactiveShellInit = ''
+        set fish_greeting
+        set -gx TMPDIR /tmp
+      '';
 
       shellAliases.ls = "${pkgs.eza}/bin/eza -l --icons --git";
     };

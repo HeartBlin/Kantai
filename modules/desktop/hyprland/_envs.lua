@@ -1,3 +1,5 @@
+local xdg_dir = os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000"
+
 -- XDG Desktop Portal
 hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
@@ -24,3 +26,6 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("NIXOS_OZONE_WL", "1")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
 hl.env("OZONE_PLATFORM", "wayland")
+
+-- SSH
+hl.env("SSH_AUTH_SOCK", xdg_dir .. "/gcr/ssh")

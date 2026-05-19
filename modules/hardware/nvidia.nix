@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.cudaSupport = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   environment.systemPackages = [ pkgs.btop ];
   hardware = {

@@ -21,13 +21,11 @@ let
   '';
 in {
   environment = {
-    sessionVariables = {
-      GTK2_RC_FILES = "$HOME/.gtkrc-2.0";
-    };
-
+    sessionVariables.GTK2_RC_FILES = "$HOME/.gtkrc-2.0";
     systemPackages = with pkgs; [
       gnome-themes-extra
       adwaita-icon-theme
+      hicolor-icon-theme
       bibata-cursors
     ];
   };

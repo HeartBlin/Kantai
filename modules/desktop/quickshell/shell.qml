@@ -1,83 +1,59 @@
+//@ pragma UseQApplication
+
 import Quickshell
-import Quickshell.Wayland
-import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 
-Scope {
-    id: root
+import "./Audio.qml"
+import "./Battery.qml"
+import "./Brightness.qml"
+import "./Cpu.qml"
+import "./Memory.qml"
+import "./Mic.qml"
+import "./Network.qml"
+import "./Separator.qml"
+import "./Time.qml"
+import "./Tray.qml"
+import "./Workspaces.qml"
 
-    property bool shouldShowOsd: false
+PanelWindow {
+  id: root
 
-    Connections {
-        target: Hyprland
-        function onFocusedWorkspaceChanged() {
-            root.shouldShowOsd = true
-            hideTimer.restart()
-        }
-    }
+  property color black: "#000000"
 
-    Timer {
-        id: hideTimer
-        interval: 1250
-        onTriggered: root.shouldShowOsd = false
-    }
+  anchors {
+    top: false
+    right: true
+    bottom: true
+    left: true
+  }
 
-    LazyLoader {
-        active: root.shouldShowOsd
+  implicitHeight: 24
+  color: root.black;
 
-        PanelWindow {
-            WlrLayershell.namespace: "kantai-workspaces"
+  RowLayout {
+    anchors.fill: parent
+    anchors.margins: 2
+    spacing: 2
 
-            anchors.top: true
-            margins.top: screen.height / 20
-            exclusiveZone: 0
-
-            implicitWidth: workspaceRow.width + 8
-            implicitHeight: 48
-            color: "transparent"
-
-            mask: Region { }
-
-            Rectangle {
-                anchors.fill: parent
-                radius: 15
-                color: "#191919"
-
-                Row {
-                    id: workspaceRow
-                    anchors.centerIn: parent
-                    spacing: 5
-
-                    Repeater {
-                        model: Hyprland.workspaces.values
-
-                        Rectangle {
-                            id: workspaceBtn
-
-                            property bool isActive: Hyprland.focusedWorkspace?.id === modelData.id
-
-                            width: 40
-                            height: 40
-                            radius: 10
-
-                            scale: 1.0
-                            onIsActiveChanged: {
-                                if (isActive) activePulse.restart()
-                            }
-
-                            color: isActive ? "#78bfff" : "#191919"
-                            Text {
-                                anchors.centerIn: parent
-
-                                text: modelData.id
-                                color: isActive ? "#002e4d" : "#FFFFFF"
-                                font { pixelSize: 14; bold: true }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    Workspaces { }
+    Item { Layout.fillWidth: true }
+    Cpu { }
+    Separator { }
+    Memory { }
+    Separator { }
+    Network { }
+    Separator { }
+    Brightness { }
+    Separator { }
+    Audio { }
+    Separator { }
+    Mic { }
+    Separator { visible: battery.visible }
+    Battery { id: battery }
+    Separator { }
+    Time { }
+    Separator { visible: tray.itemCount > 0 }
+    Tray { id: tray }
+  }
 }

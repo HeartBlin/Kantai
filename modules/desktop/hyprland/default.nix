@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  hjem.users.${config.kantai.user}.files.".config/hypr".source = ./hyprland;
+  hjem.users.${config.kantai.user}.files.".config/hypr/hyprland.lua".source =
+    ./hyprland.lua;
 
   programs = {
     hyprland.enable = true;
@@ -35,5 +36,9 @@
     glib
     gsettings-desktop-schemas
     awww
+    networkmanagerapplet
+    mako
+    libnotify
+    blueman
   ];
 }

@@ -24,23 +24,10 @@
 
       package = pkgs.steam.override {
         extraArgs = "-system-composer";
-        extraEnv =
-          {
-            PROTON_NO_WM_DECORATION = 1;
-            PROTON_USE_WOW64 = 1;
-          }
-          // lib.optionalAttrs config.hardware.nvidia.enabled {
-            PROTON_ENABLE_NVAPI = 1;
-            __NV_PRIME_RENDER_OFFLOAD = 1;
-            __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
-            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-            __VK_LAYER_NV_optimus = "NVIDIA_only";
-
-            __GL_SYNC_TO_VBLANK = 0;
-            __GL_MaxFrameAllowed = 1;
-            __GL_SHADER_DISK_CACHE = 1;
-            __GL_SHADER_DISK_CACHE_SIZE = 17179869184; # 16GB
-          };
+        extraEnv = {
+          PROTON_NO_WM_DECORATION = 1;
+          PROTON_USE_WOW64 = 1;
+        };
       };
     };
   };
@@ -48,6 +35,10 @@
   environment.systemPackages = with pkgs; [
     protonplus
     gpu-screen-recorder-gtk
+
+    (lib.hiPrio (pkgs.writeShellScriptBin "steam" ''
+      exec ${pkgs.util-linux}/bin/setpriv --ambient-caps -all -- ${config.programs.steam.package}/bin/steam "$@"
+    ''))
   ];
 
   # SteamOS kernel tweaks

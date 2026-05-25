@@ -44,7 +44,16 @@ in {
 
   # Misc
   services.fstrim.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "libata.noacpi=1"
+      "nowatchdog"
+      "reboot=pci"
+      "consoleblank=60"
+    ];
+  };
+
   users.users."server".openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEISJfRd1QeAC48Vkd4gNLZj9bPnmXDal2F9rc+3V9oI heartblin@Void"
   ];

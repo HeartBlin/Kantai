@@ -12,7 +12,7 @@ in {
     "${core}/i18n.nix"
     "${core}/networking.nix"
     "${core}/nix.nix"
-    "${core}/security.nix"
+    # "${core}/security.nix"
     "${core}/sudo.nix"
     "${core}/user.nix"
     "${core}/vars.nix"
@@ -34,10 +34,10 @@ in {
     # Desktop
     "${desktop}/fonts.nix"
     "${desktop}/greetd.nix"
-    "${desktop}/hyprland.nix"
-    "${desktop}/quickshell.nix"
+    "${desktop}/hyprland"
+    "${desktop}/quickshell"
+    "${desktop}/rofi.nix"
     "${desktop}/theme.nix"
-    "${desktop}/vicinae.nix"
 
     # Hardware
     "${hardware}/amd.nix"
@@ -58,11 +58,26 @@ in {
   # Other
   services.fstrim.enable = true;
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     resumeDevice = "/dev/mapper/crypted";
     kernelParams = [ "resume_offset=533760" "nowatchdog" ];
     extraModprobeConfig = "blacklist sp5100_tco"; # shush
   };
+
+  # Temp
+  environment.systemPackages = with pkgs; [
+    ffmpeg
+    (yt-dlp.overrideAttrs (_: {
+      version = "master";
+      doCheck = false;
+      src = fetchFromGitHub {
+        owner = "yt-dlp";
+        repo = "yt-dlp";
+        rev = "master";
+        hash = "sha256-FVoPgBrZvpXAJnwUyBIVLQyeWFipD+3kWNJvhkh8eak=";
+      };
+    }))
+  ];
 
   # System ID
   networking.hostName = "Void";

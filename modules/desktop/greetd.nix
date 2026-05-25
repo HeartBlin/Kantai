@@ -1,11 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 
-let
-  niceLaunch = pkgs.writeShellScript "niceLaunch" ''
-    echo -e "\033[1;35mHyprland is starting\033[0m"
-    start-hyprland &> /dev/null
-  '';
-in {
+{
   security.pam.services = {
     login.enableGnomeKeyring = true;
     greetd.enableGnomeKeyring = true;
@@ -27,7 +22,7 @@ in {
           "--time"
           "--remember"
           "--asterisks"
-          (lib.optionalString config.programs.hyprland.enable "--cmd ${niceLaunch}")
+          (lib.optionalString config.programs.hyprland.enable "--cmd hyprland")
         ];
       };
     };

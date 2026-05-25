@@ -1,11 +1,11 @@
-_:
+{ lib, ... }:
 
 {
   networking = {
     nftables.enable = true;
     networkmanager = {
       enable = true;
-      dns = "systemd-resolved";
+      plugins = lib.mkForce [ ];
     };
   };
 
@@ -17,21 +17,5 @@ _:
     };
   };
 
-  services = {
-    tailscale.enable = true;
-    resolved = {
-      enable = true;
-      settings.Resolve = {
-        Domains = [ "~." ];
-        DNSOverTLS = "opportunistic";
-        DNS = [ "9.9.9.9#dns.quad9.net" "2620:fe::fe#dns.quad9.net" ];
-        FallbackDNS = [
-          "9.9.9.9#dns.quad9.net"
-          "149.112.112.112#dns.quad9.net"
-          "2620:fe::fe#dns.quad9.net"
-          "2620:fe::9#dns.quad9.net"
-        ];
-      };
-    };
-  };
+  services.tailscale.enable = true;
 }

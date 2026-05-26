@@ -10,13 +10,6 @@ local window_rule = hl.window_rule
 -- SSH thingy
 local xdg_dir = os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000"
 
--- Wallpaper switcher state
-local wp = {}
-local WALLPAPER_DIR = os.getenv("HOME") .. "/Pictures/Wallpapers"
-local STATE_DIR = os.getenv("HOME") .. "/.local/state/"
-local STATE_FILE = STATE_DIR .. "wallpaperIndex"
-os.execute('mkdir -p "' .. STATE_DIR .. '"')
-
 -- Monitors
 monitor({ output = "eDP-1", mode = "1920x1080@144", position = "0x0", scale = "1" })
 monitor({ output = "", mode = "highres", position = "auto", scale = "1" })
@@ -117,8 +110,8 @@ bind("SUPER + F", window.fullscreen())
 bind("SUPER + ALT + F", window.float({ action = "toggle" }))
 bind("SUPER + Q", window.close())
 bind("SUPER + SHIFT + Q", hl.dsp.exit())
-bind("ALT + E", function() wp.walk(1)  end)
-bind("ALT + Q", function() wp.walk(-1) end)
+bind("ALT + E", exec("qs ipc call wp walk 1"))
+bind("ALT + Q", exec("qs ipc call wp walk -1"))
 
 -- Keybinds: Workspaces
 for i = 1, 10 do
@@ -143,42 +136,3 @@ bind("SUPER + mouse_down", focus({ workspace = "e-1" }))
 
 -- Window Rules
 window_rule({ name = "waydroid-fs", match = { class = "Waydroid" }, fullscreen = true })
-
--- Wallpaper Switcher
-local function get_wallpapers()
-	local f = io.popen(
-		string.format(
-			'find "%s" -maxdepth 1 -type f -regextype posix-extended -iregex ".*\\.(jpg|jpeg|png)$" | sort',
-			WALLPAPER_DIR
-		)
-	)
-	if not f then return {} end
-	local list = {}
-	for line in f:lines() do list[#list + 1] = line end
-	f:close()
-	return list
-end
-
-local function read_index()
-	local f = io.open(STATE_FILE, "r")
-	if not f then return 1 end
-	local v = tonumber(f:read("*a")) or 1
-	f:close()
-	return v
-end
-
-local function write_index(idx)
-	local f = io.open(STATE_FILE, "w")
-	if f then
-		f:write(tostring(idx))
-		f:close()
-	end
-end
-
-function wp.walk(dir)
-	local wallpapers = get_wallpapers()
-	if #wallpapers == 0 then return end
-	local idx = (read_index() - 1 + dir) % #wallpapers + 1
-	write_index(idx)
-	os.execute(string.format('awww img "%s" --transition-type none &', wallpapers[idx]))
-end

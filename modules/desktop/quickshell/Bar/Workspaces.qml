@@ -22,7 +22,7 @@ Repeater {
 
     visible: ws !== undefined
 
-    Layout.preferredWidth: root.implicitHeight - 4
+    Layout.preferredWidth: panel.implicitHeight - 4
     Layout.fillHeight: true
 
     color: isActive ? colBgActive : colBgInactive

@@ -36,7 +36,6 @@ hl.on("hyprland.start", function ()
 	exec_once("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	exec_once("hyprctl setcursor Bibata-Modern-Ice 24")
 	exec_once("foot --server")
-	exec_once("awww-daemon")
 	exec_once("qs")
 	exec_once("mako --default-timeout 2000 --ignore-timeout 1")
 	exec_once("sleep 2 && nm-applet")
@@ -102,7 +101,7 @@ hl.config({
 
 -- Keybinds: Apps / Actions
 bind("SUPER + Return", exec("footclient"))
-bind("SUPER + Space", exec("rofi -show drun -theme kantai-dmenu"))
+bind("SUPER + Space", exec("rofi -config /etc/xdg/rofi/config.rasi -show drun"))
 bind("SUPER + E", exec("nautilus"))
 bind("SUPER + W", exec("chromium"))
 bind("Print", exec("hyprshot -o ~/Pictures/Screenshots -m region"))

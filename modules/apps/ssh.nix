@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  hjem.users.${config.kantai.user}.files.".ssh/config".text = ''
+  programs.ssh.extraConfig = ''
     Host github.com
       HostName github.com
       User git

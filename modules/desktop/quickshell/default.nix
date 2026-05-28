@@ -1,7 +1,12 @@
-{ config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
-  environment.systemPackages = [ pkgs.quickshell ];
-  hjem.users.${config.kantai.user}.files.".config/quickshell".source = ./.;
   services.upower.enable = true;
+  environment = {
+    systemPackages = [ pkgs.quickshell ];
+    etc."xdg/quickshell".source = lib.cleanSourceWith {
+      src = ./.;
+      filter = path: _: baseNameOf path != "default.nix";
+    };
+  };
 }

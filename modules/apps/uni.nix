@@ -1,9 +1,9 @@
-{ config, pkgs, self, system, ... }:
+{ config, pkgs, self, ... }:
 
 {
   users.users.${config.kantai.user}.extraGroups = [ "dialout" "libvirtd" ];
   environment.systemPackages = with pkgs; [
-    self.packages.${system}.ltspice
+    self.packages.${pkgs.stdenv.system}.ltspice
     virtiofsd
   ];
 

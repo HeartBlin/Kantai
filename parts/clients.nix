@@ -2,7 +2,6 @@
 
 let
   inherit (inputs.nixpkgs.lib) filterAttrs genAttrs nixosSystem;
-  system = "x86_64-linux";
   hosts =
     builtins.readDir "${self}/clients"
     |> filterAttrs (_: type: type == "directory")
@@ -11,8 +10,7 @@ in
   genAttrs hosts (
     host:
       nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs self system; };
+        specialArgs = { inherit inputs self; };
         modules = [
           # Entry point
           "${self}/clients/${host}/config.nix"

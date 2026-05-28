@@ -20,7 +20,6 @@ in {
 
     # Apps
     "${apps}/chromium.nix"
-    "${apps}/discord.nix"
     "${apps}/fish.nix"
     "${apps}/foot.nix"
     "${apps}/gaming.nix"
@@ -81,5 +80,6 @@ in {
 
   # System ID
   networking.hostName = "Void";
+  nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "26.05";
 }

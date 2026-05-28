@@ -4,16 +4,16 @@ import Quickshell.Io
 Text {
   id: cpu
 
-  property color red: "#FF0000"
-  property color yellow: "#FFFF00"
-  property color green: "#00FF00"
+  property color high: "#FF0000"
+  property color med: "#FFFF00"
+  property color low: "#00FF00"
 
   property int cpuProcent: 0
 
   topPadding: 1
   text: "CPU: " + cpuProcent + "%"
 
-  color: cpuProcent < 40 ? green : cpuProcent < 70 ? yellow : red
+  color: cpuProcent < 40 ? low : cpuProcent < 70 ? med : hig
   font { pixelSize: 13; family: "monospace"; }
 
   Process {
@@ -24,9 +24,7 @@ Text {
       onRead: data => {
         if (!data) return
         var val = parseInt(data.trim())
-        if (!isNaN(val)) {
-          cpuProcent = val
-        }
+        if (!isNaN(val)) { cpuProcent = val }
       }
     }
   }

@@ -1,45 +1,52 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages = [ pkgs.rofi ];
-  hjem.users.${config.kantai.user}.files.".config/rofi/themes/kantai-dmenu.rasi".text = ''
-    * {
-      background-color: #000000;
-      border-color: #FFFFFF;
-      text-color: #FFFFFF;
-      font: "monospace 10";
-    }
+  environment = {
+    systemPackages = [ pkgs.rofi ];
+    etc = {
+      "xdg/rofi/config.rasi".text = ''
+        configuration { terminal: "foot"; }
+        @theme "/dev/null"
 
-    window {
-      anchor: north;
-      location: north;
-      width: 100%;
-      padding: 4px;
-      children: [ horibox ];
-    }
+        * {
+          background-color: #000000;
+          border-color: #FFFFFF;
+          text-color: #FFFFFF;
+          font: "monospace 10";
+        }
 
-    horibox {
-      orientation: horizontal;
-      children: [ prompt, entry, listview ];
-    }
+        window {
+          anchor: north;
+          location: north;
+          width: 100%;
+          padding: 4px;
+          children: [ horibox ];
+        }
 
-    listview {
-      layout: horizontal;
-      spacing: 5px;
-      lines: 100;
-    }
+        horibox {
+          orientation: horizontal;
+          children: [ prompt, entry, listview ];
+        }
 
-    entry {
-      expand: false;
-      width: 10em;
-    }
+        listview {
+          layout: horizontal;
+          spacing: 5px;
+          lines: 100;
+        }
 
-    prompt { margin: 0px 10px 0px 0px; }
-    element { padding: 0px 2px; }
-    element selected { background-color: #285577; }
-    element-text, element-icon {
-      background-color: inherit;
-      text-color: inherit;
-    }
-  '';
+        entry {
+          expand: false;
+          width: 10em;
+        }
+
+        prompt { margin: 0px 10px 0px 0px; }
+        element { padding: 0px 2px; }
+        element selected { background-color: #285577; }
+        element-text, element-icon {
+          background-color: inherit;
+          text-color: inherit;
+        }
+      '';
+    };
+  };
 }

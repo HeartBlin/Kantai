@@ -2,9 +2,9 @@ import Quickshell.Io
 import QtQuick
 
 Text {
-  property color red: "#FF0000"
-  property color yellow: "#FFFF00"
-  property color green: "#00FF00"
+  property color low: "#FF0000"
+  property color med: "#FFFF00"
+  property color high: "#00FF00"
 
   property bool showSwap: false
 
@@ -23,7 +23,7 @@ Text {
 
   color: {
     var procent = showSwap ? swapProcent : memProcent
-    return procent < 40 ? green : procent < 70 ? yellow : red
+    return procent < 40 ? high : procent < 70 ? med : low
   }
 
   font { pixelSize: 13; family: "monospace"; }

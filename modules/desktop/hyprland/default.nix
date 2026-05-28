@@ -1,9 +1,6 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  hjem.users.${config.kantai.user}.files.".config/hypr/hyprland.lua".source =
-    ./hyprland.lua;
-
   programs = {
     hyprland.enable = true;
     dconf.enable = true;
@@ -12,7 +9,6 @@
 
   services.gvfs.enable = true;
   security.polkit.enable = true;
-
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
@@ -27,18 +23,20 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    libsecret
-    nautilus
-    file-roller
-    hyprshot
-    brightnessctl
-    glib
-    gsettings-desktop-schemas
-    awww
-    networkmanagerapplet
-    mako
-    libnotify
-    blueman
-  ];
+  environment = {
+    etc."xdg/hypr/hyprland.lua".text = builtins.readFile ./hyprland.lua;
+    systemPackages = with pkgs; [
+      libsecret
+      nautilus
+      file-roller
+      hyprshot
+      brightnessctl
+      glib
+      gsettings-desktop-schemas
+      networkmanagerapplet
+      mako
+      libnotify
+      blueman
+    ];
+  };
 }

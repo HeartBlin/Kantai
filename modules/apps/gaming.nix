@@ -1,18 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs = {
-    gpu-screen-recorder.enable = true;
-    gamemode = let
-      start = (pkgs.writeShellScript "gs" "${pkgs.asusctl}/bin/asusctl profile set Performance").outPath;
-      end = (pkgs.writeShellScript "ge" "${pkgs.asusctl}/bin/asusctl profile set Quiet").outPath;
-    in {
+    gamemode = {
       enable = true;
       enableRenice = false;
-      settings = {
-        custom = { inherit start end; };
-        general.softrealtime = "auto";
-      };
+      settings.general.softrealtime = "auto";
     };
 
     steam = {
@@ -31,15 +24,6 @@
       };
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    protonplus
-    gpu-screen-recorder-gtk
-
-    (lib.hiPrio (pkgs.writeShellScriptBin "steam" ''
-      exec ${pkgs.util-linux}/bin/setpriv --ambient-caps -all -- ${config.programs.steam.package}/bin/steam "$@"
-    ''))
-  ];
 
   # SteamOS kernel tweaks
   boot.kernel.sysctl = {

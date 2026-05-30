@@ -26,13 +26,13 @@ in {
 
     # Server
     "${server}/backup.nix"
+    "${server}/caddy.nix"
+    "${server}/immich.nix"
     "${server}/jellyfin.nix"
-    "${server}/nextcloud.nix"
-    "${server}/nginx.nix"
+    "${server}/samba.nix"
     "${server}/scrutiny.nix"
     "${server}/secrets.nix"
     "${server}/ssh.nix"
-    "${server}/tlp.nix"
     "${server}/vaultwarden.nix"
   ];
 

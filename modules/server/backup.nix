@@ -11,6 +11,7 @@
       passwordFile = config.sops.secrets."restic_pass".path;
       environmentFile = config.sops.secrets."ovh_env".path;
 
+      progressFps = 0.1;
       timerConfig = {
         OnCalendar = "*-*-* 01:00:00";
         Persistent = true;
@@ -26,14 +27,15 @@
       ];
     };
 
-    nextcloud = {
-      repository = "s3:https://s3.eu-central-lz-buh-a.cloud.ovh.net/heartblin/nextcloud";
-      paths = [ "/mnt/Nextcloud/data/heartblin/files" ];
+    immich = {
+      repository = "s3:https://s3.eu-central-lz-buh-a.cloud.ovh.net/heartblin/immich";
+      paths = [ "/srv/immich/upload" "/srv/immich/library" ];
       initialize = true;
 
       passwordFile = config.sops.secrets."restic_pass".path;
       environmentFile = config.sops.secrets."ovh_env".path;
 
+      progressFps = 0.1;
       timerConfig = {
         OnCalendar = "*-*-* 04:00:00";
         Persistent = true;
@@ -41,19 +43,17 @@
       };
 
       extraBackupArgs = [ "--compression max" ];
-
       pruneOpts = [
         "--keep-last 2"
         "--keep-monthly 1"
       ];
 
       backupPrepareCommand = ''
-        ${config.services.nextcloud.occ}/bin/nextcloud-occ maintenance:mode --on || \
-          { echo "Failed to enable maintenance mode. Aborting backup." >&2; exit 1; }
+        systemctl stop immich-server.service immich-machine-learning.service
       '';
 
       backupCleanupCommand = ''
-        ${config.services.nextcloud.occ}/bin/nextcloud-occ maintenance:mode --off
+        systemctl start immich-server.service immich-machine-learning.service
       '';
     };
   };

@@ -7,13 +7,12 @@ _:
     defaultSopsFormat = "yaml";
 
     secrets = {
+      "immich" = { };
       "restic_pass" = {
         owner = "root";
         group = "root";
         mode = "0400";
       };
-
-      "nextcloud_admin_pass" = { };
 
       "ovh_env" = {
         owner = "root";
@@ -25,6 +24,7 @@ _:
       "ovh/app_secret" = { };
       "ovh/consumer_key" = { };
       "ovh/endpoint" = { };
+      "samba" = { };
     };
   };
 }

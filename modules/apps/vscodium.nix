@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, ... }:
+{ lib, pkgs, self, ... }:
 
 let
   settingsJSON = builtins.toJSON {
@@ -143,7 +143,7 @@ let
   };
 in {
   fonts.packages = [ pkgs.googlesans-code ];
-  hjem.users.${config.kantai.user}.files = {
+  kantai.home = {
     ".vscode-oss/argv.json".text = argvJSON;
     ".config/VSCodium/User/settings.json".text = settingsJSON;
     ".config/VSCodium/User/keybindings.json".text = keybindJSON;

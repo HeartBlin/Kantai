@@ -1,15 +1,32 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
-  options.kantai = let
-    mkVar = lib.mkOption {
+  # Small shim to avoid doing "hjem.users.${config.kantai.user}.files"
+  config.hjem.users.${config.kantai.user}.files = config.kantai.home;
+  options.kantai = {
+    user = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       default = null;
     };
-  in {
-    user = mkVar;
-    email = mkVar;
-    name = mkVar;
-    flake = mkVar;
+
+    email = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+    };
+
+    name = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+    };
+
+    flake = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+    };
+
+    home = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+    };
   };
 }

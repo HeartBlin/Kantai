@@ -49,7 +49,7 @@ in {
     }
   ];
 
-  hjem.users.${user}.files = {
+  kantai.home = {
     ".config/gtk-3.0/settings.ini".text = iniContent;
     ".config/gtk-4.0/settings.ini".text = iniContent;
     ".gtkrc-2.0".text = gtk2Content;
@@ -64,6 +64,9 @@ in {
       file:///mnt/intel Storage
       file:///mnt/intel/SteamLibrary/steamapps/common/PAYDAY%202/mods Mods
       file:///mnt/intel/SteamLibrary/steamapps/common/PAYDAY%202/assets/mod_overrides Mod Overrides
+
+      smb://100.64.0.1/Media Media (Reason)
+      smb://100.64.0.1/Private Private (Reason)
     '';
   };
 }

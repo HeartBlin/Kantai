@@ -53,14 +53,22 @@
 </tr>
 </table>
 
+<h2>Desktop</h2>
+
+<img alt="Desktop" src=".github/desktop.png" />
+
 <h2> Credits </h2>
 
 Configurations where I got *inspired* from:
 
-- [TheMaxMur](https://github.com/TheMaxMur/NixOS-Configuration)
-- [fufexan](https://github.com/fufexan/dotfiles)
-- [rxyhn](https://github.com/rxyhn/yuki)
-- [NotAShelf](https://github.com/NotAShelf/nyx) _<sub>archived</sub>_
+<div align="center">
+
+[TheMaxMur](https://github.com/TheMaxMur/NixOS-Configuration) |
+[fufexan](https://github.com/fufexan/dotfiles) |
+[rxyhn](https://github.com/rxyhn/yuki) |
+[NotAShelf](https://github.com/NotAShelf/nyx) _<sub>archived</sub>_
+
+</div>
 
 Thanks! **^\_\_^**
 

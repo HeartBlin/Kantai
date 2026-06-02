@@ -18,8 +18,8 @@ Item {
 
   FolderListModel {
     id: folderModel
-    folder: "file:///home/heartblin/Pictures/Wallpapers"
-    nameFilters: ["*.png", "*.jpg", "*.jpeg"]
+    folder: "file:///etc/wallpapers"
+    nameFilters: ["*.png"]
     sortField: FolderListModel.Name
   }
 

@@ -34,6 +34,8 @@ env("SSH_AUTH_SOCK", xdg_dir .. "/gcr/ssh")
 -- Autostart
 hl.on("hyprland.start", function ()
 	exec_once("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+	exec_once("systemctl --user start polkit-gnome-authentication-agent-1")
+
 	exec_once("hyprctl setcursor Bibata-Modern-Ice 24")
 	exec_once("foot --server")
 	exec_once("qs")
@@ -121,11 +123,12 @@ end
 
 -- Keybinds: Media / Brightness
 local SINK = "@DEFAULT_AUDIO_SINK@"
+local fuck = "systemd-run --user --quiet --no-block --collect "
 bind("XF86AudioRaiseVolume", exec("wpctl set-volume -l 1.0 " .. SINK .. " 5%+"), { locked = true, repeating = true })
 bind("XF86AudioLowerVolume", exec("wpctl set-volume -l 1.0 " .. SINK .. " 5%-"), { locked = true, repeating = true })
 bind("XF86AudioMute", exec("wpctl set-mute " .. SINK .. " toggle"), { locked = true })
-bind("XF86MonBrightnessUp", exec("brightnessctl set 5%+"), { locked = true, repeating = true })
-bind("XF86MonBrightnessDown", exec("brightnessctl set 5%-"), { locked = true, repeating = true })
+bind("XF86MonBrightnessUp", exec(fuck .. "brightnessctl set 5%+"), { locked = true, repeating = true })
+bind("XF86MonBrightnessDown", exec(fuck .. "brightnessctl set 5%-"), { locked = true, repeating = true })
 
 -- Keybinds: Mouse
 bind("SUPER + mouse:272", window.drag(), { mouse = true })

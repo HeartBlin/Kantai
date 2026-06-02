@@ -25,6 +25,11 @@
       };
     };
 
+    kantaiWalls = {
+      url = "git+ssh://git@github.com/HeartBlin/KantaiWalls.git";
+      flake = false; # Literally just PNGs
+    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs = {

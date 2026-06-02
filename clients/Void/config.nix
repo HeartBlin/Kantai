@@ -12,7 +12,7 @@ in {
     "${core}/i18n.nix"
     "${core}/networking.nix"
     "${core}/nix.nix"
-    # "${core}/security.nix"
+    "${core}/security.nix"
     "${core}/sudo.nix"
     "${core}/user.nix"
     "${core}/vars.nix"
@@ -32,9 +32,10 @@ in {
 
     # Desktop
     "${desktop}/fonts.nix"
-    "${desktop}/greetd.nix"
+    "${desktop}/gdm.nix"
     "${desktop}/hyprland"
     "${desktop}/quickshell"
+    "${desktop}/quietBoot.nix"
     "${desktop}/rofi.nix"
     "${desktop}/theme.nix"
 
@@ -44,6 +45,7 @@ in {
     "${hardware}/audio.nix"
     "${hardware}/bluetooth.nix"
     "${hardware}/nvidia.nix"
+    "${hardware}/yubi.nix"
   ];
 
   # Custom options
@@ -73,7 +75,7 @@ in {
         owner = "yt-dlp";
         repo = "yt-dlp";
         rev = "master";
-        hash = "sha256-FVoPgBrZvpXAJnwUyBIVLQyeWFipD+3kWNJvhkh8eak=";
+        hash = "sha256-UstFk+z6CWky7/jnf9vli8dIbrZjjE5U0Dan/hTNF4I=";
       };
     }))
   ];

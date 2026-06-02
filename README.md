@@ -60,15 +60,10 @@
 <h2> Credits </h2>
 
 Configurations where I got *inspired* from:
-
-<div align="center">
-
 [TheMaxMur](https://github.com/TheMaxMur/NixOS-Configuration) |
 [fufexan](https://github.com/fufexan/dotfiles) |
 [rxyhn](https://github.com/rxyhn/yuki) |
 [NotAShelf](https://github.com/NotAShelf/nyx) _<sub>archived</sub>_
-
-</div>
 
 Thanks! **^\_\_^**
 

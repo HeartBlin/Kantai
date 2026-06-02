@@ -57,7 +57,7 @@ let
     "window.titleBarStyle" = "native";
 
     # Workbench
-    "workbench.colorTheme" = "Default Dark+";
+    "workbench.colorTheme" = "Dark+";
     "workbench.editor.empty.hint" = "hidden";
     "workbench.editor.enablePreview" = true;
     "workbench.iconTheme" = "material-icon-theme";

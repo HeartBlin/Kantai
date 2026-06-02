@@ -13,7 +13,7 @@ Text {
   topPadding: 1
   text: "CPU: " + cpuProcent + "%"
 
-  color: cpuProcent < 40 ? low : cpuProcent < 70 ? med : hig
+  color: cpuProcent < 40 ? low : cpuProcent < 70 ? med : high
   font { pixelSize: 13; family: "monospace"; }
 
   Process {
